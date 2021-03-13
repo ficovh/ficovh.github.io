@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BSDguy.org, ">
+
+
+        <title>Agregando un disco extra en NetBSD // BSDguy.org // </title>
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./theme/css/pure.css">
+    <link rel="stylesheet" href="./theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="./author/francisco-valladolid.html" title="See posts by Francisco Valladolid">
+                </a>
+                <h2 class="article-info">Francisco Valladolid</h2>
+                <small class="about-author"></small>
+                <h5>Published</h5>
+                <p>Wed 29 June 2011</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Agregando un disco extra en NetBSD</h1>
+                        <p class="post-meta">
+                            // under                                 <a class="post-category" href="./tag/scsi.html">scsi</a>
+                                <a class="post-category" href="./tag/netbsd.html">netbsd</a>
+                                <a class="post-category" href="./tag/unix.html">unix</a>
+                                <a class="post-category" href="./tag/bsd.html">bsd</a>
+                                <a class="post-category" href="./tag/linux.html">linux</a>
+                        </p>
+                </header>
+            </section>
+            <p>Tengo en casa un servidor corriendo NetBSD 5.1 stable en un disco SCSI
+36gb conectado a una controladora SYMBIOS que soporta siete
+dispositivos. Tengo necesidad de compilar pkgsrc/, asi que me decidi a
+montar un disco extra solo para ese proposito, a continuacion detallo el
+proceso.</p>
+<pre class="literal-block">
+$ dmesg | grep scsibus
+scsibus0 at esiop0: 16 targets, 8 luns per target
+scsibus0: waiting 2 seconds for devices to settle...
+sd0 at scsibus0 target 1 lun 0: &lt;FUJITSU, MAP3367NP, 0106&gt; disk fixed
+sd1 at scsibus0 target 2 lun 0: &lt;IBM, DDYS-T36950N, S96H&gt; disk fixed
+</pre>
+<p><a class="reference external" href="http://netbsd.gw.com/cgi-bin/man-cgi?disklabel++NetBSD-current">disklabel(8)</a>
+nos permite crear la etiqueta de nuestra particion en el disco nuevo.</p>
+<pre class="literal-block">
+$ disklabel -i -I sd1
+</pre>
+<pre class="literal-block">
+$ sudo newfs /dev/rsd1e
+/dev/rsd1e: 35003.6MB (71687340 sectors) block size 16384, fragment size 2048
+        using 190 cylinder groups of 184.23MB, 11791 blks, 23296 inodes.
+super-block backups (for fsck_ffs -b #) at:
+
+$ sudo fsck -f /dev/rsd1e
+$ sudo mkdir /usr/pkgsrc
+$ vi /etc/fstab
+
+/dev/sd1e               /usr/pkgsrc ffs rw,log          1 2
+
+$ sudo mount -va
+$ df -h
+/dev/sd1e          34G        34M        32G   0% /usr/pkgsrc
+</pre>
+<p>La instalacion es simple y ahora tenemos un disco aunque de no gran
+tamano, bien nos sirve para hacer compilacion de paquetes, sin
+congestionar nuestro disco del sistema base. Algunas ocasiones
+necesitamos limpiar el disco, llenar con ceros, para ello usamos:</p>
+<pre class="literal-block">
+# dd if=/dev/zero of=/dev/sd1 bs=8k
+</pre>
+
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "blogdefranciscovalladolid"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; BSDguy.org &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>

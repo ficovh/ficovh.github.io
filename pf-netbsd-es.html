@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BSDguy.org, ">
+
+
+        <title>Configuracion de PF en NetBSD 5.1 // BSDguy.org // </title>
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./theme/css/pure.css">
+    <link rel="stylesheet" href="./theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="./author/francisco-valladolid.html" title="See posts by Francisco Valladolid">
+                </a>
+                <h2 class="article-info">Francisco Valladolid</h2>
+                <small class="about-author"></small>
+                <h5>Published</h5>
+                <p>Sat 10 September 2011</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Configuracion de PF en NetBSD 5.1</h1>
+                        <p class="post-meta">
+                            // under                                 <a class="post-category" href="./tag/scsi.html">scsi</a>
+                                <a class="post-category" href="./tag/netbsd.html">netbsd</a>
+                                <a class="post-category" href="./tag/unix.html">unix</a>
+                                <a class="post-category" href="./tag/bsd.html">bsd</a>
+                                <a class="post-category" href="./tag/linux.html">linux</a>
+                        </p>
+                </header>
+            </section>
+            <p>PF (packet filter) es un filtro de paquetes proveniente de OpenBSD;
+Incorporado en el sistema base desde NetBSD 4.0 y puede ser usado para
+implementar firewalls. NetBSD 5.1 incorpora la version 4.2 de pf, por lo
+que es importante leer la
+<a class="reference external" href="ftp://ftp.openbsd.org/pub/OpenBSD/doc/history/pf-faq42.pdf">FAQ</a>
+correspondiente; En esta ocasion, tengo un servidor corriendo
+ssh/web/dns y varios intentos de login via ssh, asi que decidi
+implementar una solucion para mitigar los intentos, para ello use PF y
+NetBSD 5.1; a continuacion detallo el proceso simple; Editamos
+/etc/lkm.conf y anexamos:</p>
+<pre class="literal-block">
+/usr/lkm/pf.o   -   -   -   -  BEFORENET
+</pre>
+<p>En /etc/rc.conf</p>
+<pre class="literal-block">
+lkm=YES
+pf=YES
+pflogd=YES
+</pre>
+<p>y manualmente iniciamos el modulo lkm para pf</p>
+<pre class="literal-block">
+$ sudo modload /usr/lkm/pf.o
+</pre>
+<p>Una vez realizado el proceso, editamos a conveniencia el archivo
+/etc/pf.conf y agregamos lo necesario, en mi caso:</p>
+<pre class="literal-block">
+int_if = &quot;fxp0&quot;
+localnet = $int_if:network
+
+tcp_services = &quot;{ ssh, smtp, domain, www, pop3, auth, https }&quot;
+udp_services = &quot;{ domain }&quot;
+
+table  &lt;bruteforce&gt; persist
+
+block quick from &lt;bruteforce&gt;
+
+pass inet proto tcp to $localnet port $tcp_services \
+        keep state (max-src-conn 100, max-src-conn-rate 15/5, \
+        overload &lt;bruteforce&gt; flush global)
+</pre>
+<div class="section" id="descripcion">
+<h2>Descripcion:</h2>
+<p><strong>persist:</strong> Mantiene la tabla en memoria, aunque no haya reglas que
+refieran a ella.</p>
+<p><strong>max-src-conn :</strong> Indica el numero de conexiones
+simultaneas provenientes de un host, puedes incrementar o disminuir este
+valor segun sea el caso.</p>
+<p><strong>max-src-conn-rate:</strong> Indica la tasa de
+transferencia permitida por conexion, aqui es 15 conexiones cada 5
+segundos, expresada: 15/5</p>
+<p><strong>Overload:</strong> Toda conexion que exceda la
+condicion anterior, sera agregada a la tabla bruteforce, y sera
+bloqueado todo el contenido de la tabla.
+Para ver la lista de IP baneadas, usa la siguiente linea:</p>
+<pre class="literal-block">
+$ sudo /sbin/pfctl -t bruteforce -T show
+</pre>
+<p>Con estas adiciones podemos bloquear intentos fallidos via ssh hacia
+nuestro servidor.</p>
+</div>
+
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "blogdefranciscovalladolid"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; BSDguy.org &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>

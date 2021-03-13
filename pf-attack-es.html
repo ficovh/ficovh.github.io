@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BSDguy.org, ">
+
+
+        <title>Bloqueando intentos masivos por SSH // BSDguy.org // </title>
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./theme/css/pure.css">
+    <link rel="stylesheet" href="./theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="./author/francisco-valladolid.html" title="See posts by Francisco Valladolid">
+                </a>
+                <h2 class="article-info">Francisco Valladolid</h2>
+                <small class="about-author"></small>
+                <h5>Published</h5>
+                <p>Sun 15 February 2015</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Bloqueando intentos masivos por SSH</h1>
+                        <p class="post-meta">
+                            // under                                 <a class="post-category" href="./tag/openbsd.html">openbsd</a>
+                                <a class="post-category" href="./tag/security.html">security</a>
+                                <a class="post-category" href="./tag/pf.html">pf</a>
+                                <a class="post-category" href="./tag/tcp.html">tcp</a>
+                        </p>
+                </header>
+            </section>
+            <p>PF (packet filter) es el filtro de paquetes por defecto en OpenBSD desde la version 3.0, su uso mas frecuente
+es en Firewall y control de ancho de banda por tipo de trafico.</p>
+<p>Pf se puede usar para bloquear intentos fallidos por SSH u otro protocolo, ejemplo:
+Si leemos el authlog en OpenBSD observamos lo siguiente:</p>
+<pre class="literal-block">
+$ sudo tail -f /var/log/authlog
+
+Feb 13 22:43:55 openbsd last message repeated 2 times
+Feb 13 22:43:55 openbsd sshd[2705]: Received disconnect from 83.217.254.216: 11:  [preauth]
+Feb 13 22:43:56 openbsd sshd[6102]: reverse mapping checking getaddrinfo for 83-217-254-216-eu1.opsourcecloud.net [83.217.254.216] failed
+Feb 13 22:43:56 openbsd sshd[6102]: Failed password for root from 83.217.254.216 port 47388 ssh2
+Feb 13 22:43:56 openbsd last message repeated 2 times
+Feb 13 22:43:56 openbsd sshd[6102]: Received disconnect from 83.217.254.216: 11:  [preauth]
+Feb 13 22:43:56 openbsd sshd[22991]: reverse mapping checking getaddrinfo for 83-217-254-216-eu1.opsourcecloud.net [83.217.254.216] failed
+Feb 13 22:43:56 openbsd sshd[22991]: Failed password for root from 83.217.254.216 port 47546 ssh2
+Feb 13 22:43:56 openbsd last message repeated 2 times
+Feb 13 22:43:56 openbsd sshd[22991]: Received disconnect from 83.217.254.216: 11:  [preauth]
+</pre>
+<div class="section" id="en-el-archivo-etc-pf-conf-necesitamos-agregar">
+<h2>En el archivo /etc/pf.conf necesitamos agregar</h2>
+<pre class="literal-block">
+int_if = &quot;fxp0&quot;
+
+table  &lt;ataque&gt; persist
+
+block quick from &lt;ataque&gt;
+
+pass quick proto tcp from any to any port ssh \
+        flags S/SA keep state \
+        (max-src-conn 100, max-src-conn-rate 5/3, \
+        overload &lt;ataque&gt; flush global)
+</pre>
+</div>
+<div class="section" id="recargamos-el-archivo">
+<h2>Recargamos el archivo</h2>
+<pre class="literal-block">
+$ sudo /sbin/pfctl -f /etc/pf.conf
+</pre>
+<p>Todas las IP's baneadas permanecen en la tabla &lt;ataque&gt; mientras no decidamos liberarlas, pf cuenta con la opcion expiretable para ese
+proposito, la siguiente linea da un tiempo de vencimiento a la tabla &lt;ataque&gt; de 24 horas.</p>
+<pre class="literal-block">
+$ sudo /sbin/pfctl -t ataque -T expire 86400
+</pre>
+</div>
+
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "blogdefranciscovalladolid"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; BSDguy.org &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>

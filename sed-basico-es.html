@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BSDguy.org, ">
+
+
+        <title>sed basico // BSDguy.org // </title>
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./theme/css/pure.css">
+    <link rel="stylesheet" href="./theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="./author/francisco-valladolid.html" title="See posts by Francisco Valladolid">
+                        <img class="avatar" alt="Francisco Valladolid" src="https://www.gravatar.com/avatar/ab1e128805502b007dd29966ca93273c">
+                </a>
+                <h2 class="article-info">Francisco Valladolid</h2>
+                <small class="about-author"></small>
+                <h5>Published</h5>
+                <p>Wed 27 May 2020</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>sed basico</h1>
+                        <p class="post-meta">
+                            // under                                 <a class="post-category" href="./tag/netbsd.html">netbsd</a>
+                                <a class="post-category" href="./tag/unix.html">unix</a>
+                                <a class="post-category" href="./tag/bsd.html">bsd</a>
+                                <a class="post-category" href="./tag/sed.html">sed</a>
+                                <a class="post-category" href="./tag/regexp.html">regexp</a>
+                        </p>
+                </header>
+            </section>
+            <div class="section" id="que-es-sed">
+<h2>¿Que es Sed?</h2>
+<p><em>sed (Stream Editor)</em> es un editor de flujos, te permite editar, reemplazar lineas en un archivo de texto
+usando expresiones regulares.</p>
+<p>El sistema operativo Unix tiene un superconjunto de comandos que permiten
+realizar todo tipo de tareas de procesamiento de archivos de texto.</p>
+<p>El superconjunto incluye: <em>sed, awk, cat, echo, grep, ed, vi</em> entre otros.</p>
+<p>Recientemente me topé con un archivo exportado que incluye un conjunto de usuarios
+separados por &quot;espacios&quot;, necesito ordenarlo en forma de lista y agregarle
+algunos parametros antes y despues para exportarlo a un router Mikrotik.</p>
+<p>El archivo en cuestion se ve así.</p>
+<a class="reference external image-reference" href="https://i.imgur.com/NVhvxj6.png"><img alt="" src="https://i.imgur.com/NVhvxj6m.png" /></a>
+<p>Necesito sustituir los espacios en blanco por un caracter de nueva linea para
+crear una lista de usuarios, usamos el comando <em>sed</em> de la siguiente forma.</p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sed <span class="s1">&#39;s/\s/\n/g&#39;</span> test.txt &gt; sed1.txt
+</pre></div>
+<p>Después de ejcutar el comando, el archivo luce así.</p>
+<a class="reference external image-reference" href="https://i.imgur.com/tOXctyF.png"><img alt="" src="https://i.imgur.com/tOXctyFm.png" /></a>
+<p>Además de eso, necesito agregar una cadena de texto al inicio:  <em>add name=</em></p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sed -i <span class="s1">&#39;s/^/add name\=/g&#39;</span> sed1.txt
+</pre></div>
+<a class="reference external image-reference" href="https://i.imgur.com/MguwLUC.png"><img alt="" src="https://i.imgur.com/MguwLUCm.png" /></a>
+<p>Tambien necesito agregar al final la siguiente cadena:</p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sed -i <span class="s1">&#39;s/$/ limit-uptime\=02:00:00 disabled\=no profile\=\&quot;1mega\&quot;/g&#39;</span> sed1.txt
+</pre></div>
+<a class="reference external image-reference" href="https://i.imgur.com/KhedLDe.png"><img alt="" src="https://i.imgur.com/KhedLDem.png" /></a>
+<p>Unix es un sistema operativo muy completo, como tal ya no existe, pero sus derivados si,
+por citar algunos: <em>Linux, OpenBSD, FreeBSD, NetBSD, OSX</em>.</p>
+</div>
+
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "blogdefranciscovalladolid"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; BSDguy.org &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>

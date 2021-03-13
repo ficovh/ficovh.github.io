@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BSDguy.org, ">
+
+
+        <title>Nginx - PHP-FPM - MySQL OpenBSD 5.6 // BSDguy.org // </title>
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./theme/css/pure.css">
+    <link rel="stylesheet" href="./theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="./author/francisco-valladolid.html" title="See posts by Francisco Valladolid">
+                </a>
+                <h2 class="article-info">Francisco Valladolid</h2>
+                <small class="about-author"></small>
+                <h5>Published</h5>
+                <p>Sat 04 April 2015</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Nginx - PHP-FPM - MySQL OpenBSD 5.6</h1>
+                        <p class="post-meta">
+                            // under                                 <a class="post-category" href="./tag/nginx.html">nginx</a>
+                                <a class="post-category" href="./tag/openbsd.html">openbsd</a>
+                                <a class="post-category" href="./tag/php.html">php</a>
+                        </p>
+                </header>
+            </section>
+            <p><strong>El siguiente articulo esta en Ingles y fue escrito por mi para www.vultr.com.</strong></p>
+<p>OpenBSD is most used in firewall implementations,however, many people around the world are using OpenBSD as web server, mainly programmers and sysadmins.
+We assume a knowledge of OpenBSD, nginx and Unix in general.</p>
+<p>nginx [engine x] is an HTTP and reverse proxy server, as well as a mail proxy server, written by Igor Sysoev. For a long time, it has been running on many heavily loaded Russian sites . (<em>from the website</em>).</p>
+<p>PHP-FPM (FastCGI Process Manager) is an alternative PHP FastCGI implementation with some additional features useful for sites of any size, especially busier sites. (<em>from the site</em>)</p>
+<h3>Requeriments:</h3>
+<ul>
+<li>OpenBSD 5.6 installed in your vultr.com VPS</li>
+<li>set the PKG_PATH = ftp://ftp.openbsd.org/pub/OpenBSD/5.6/packages/`arch -s`</li>
+<li>super user access</li>
+</ul>
+<h2>Install nginx</h2>
+<div class="highlight"><pre><span></span><code>$ sudo pkg_add -v nginx
+Ambiguous: choose package <span class="k">for</span> nginx
+a     <span class="m">0</span>: &lt;None&gt;
+      <span class="m">1</span>: nginx-1.4.7p0
+      <span class="m">2</span>: nginx-1.4.7p0-lua
+      <span class="m">3</span>: nginx-1.4.7p0-naxsi
+      <span class="m">4</span>: nginx-1.4.7p0-passenger
+      <span class="m">5</span>: nginx-1.5.7p3
+      <span class="m">6</span>: nginx-1.5.7p3-lua
+      <span class="m">7</span>: nginx-1.5.7p3-naxsi
+      <span class="m">8</span>: nginx-1.5.7p3-passenger
+  Your choice:
+</code></pre></div>
+
+<p>For the purposes of this document, we install the "5" option.</p>
+<h2>Install PHP-FPM</h2>
+<p>$ sudo pkg_add -v php-fpm-5.5.14.tgz</p>
+<p>The <em>/etc/rc.conf.local</em> must be containt the next line</p>
+<p>nginx_flags=""</p>
+<p>And the <em>/etc/rc.conf</em> for start automatically in each reboot.</p>
+<div class="highlight"><pre><span></span><code><span class="err"># rc.d(8) packages scripts</span>
+<span class="err"># started in the specified order and stopped in reverse order</span>
+<span class="err">pkg_scripts=nginx</span>
+</code></pre></div>
+
+<p><strong> Editing <em>/etc/nginx/nginx.conf</em> and <em>/etc/php-fpm.conf</em> </strong></p>
+<p>Basic requeriments for /etc/nginx/nginx.conf in the <em>server</em> section.</p>
+<div class="highlight"><pre><span></span><code><span class="err">location ~ \.php$ {</span>
+<span class="err">            try_files $uri =404;</span>
+<span class="err">            fastcgi_split_path_info ^(.+\.php)(/.+)$;</span>
+<span class="err">            fastcgi_pass   127.0.0.1:9000;</span>
+<span class="err">            fastcgi_index index.php;</span>
+<span class="err">            fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;</span>
+<span class="err">            include fastcgi_params;</span>
+<span class="err">    }</span>
+</code></pre></div>
+
+<p><strong>Edit /etc/php-fpm.conf</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">;</span> <span class="n">Unix</span> <span class="k">user</span><span class="o">/</span><span class="k">group</span> <span class="k">of</span> <span class="n">processes</span>
+<span class="p">;</span> <span class="n">Note</span><span class="p">:</span> <span class="n">The</span> <span class="k">user</span> <span class="k">is</span> <span class="n">mandatory</span><span class="p">.</span> <span class="k">If</span> <span class="n">the</span> <span class="k">group</span> <span class="k">is</span> <span class="k">not</span> <span class="k">set</span><span class="p">,</span> <span class="n">the</span> <span class="k">default</span> <span class="k">user</span><span class="s1">&#39;s </span>
+<span class="s1">; group will be used.</span>
+<span class="s1">user = www</span>
+<span class="s1">group = www</span>
+
+
+<span class="s1">; The address on which to accept FastCGI requests.</span>
+<span class="s1">; Valid syntaxes are:</span>
+<span class="s1">; &#39;</span><span class="n">ip</span><span class="p">.</span><span class="k">add</span><span class="p">.</span><span class="n">re</span><span class="p">.</span><span class="n">ss</span><span class="p">:</span><span class="n">port</span><span class="s1">&#39;    - to listen on a TCP socket to a specific address on</span>
+<span class="s1">;                            a specific port;</span>
+<span class="s1">;   &#39;</span><span class="n">port</span><span class="s1">&#39;                 - to listen on a TCP socket to all addresses on a</span>
+<span class="s1">;                            specific port;</span>
+<span class="s1">;   &#39;</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="k">to</span><span class="o">/</span><span class="n">unix</span><span class="o">/</span><span class="n">socket</span><span class="err">&#39;</span> <span class="o">-</span> <span class="k">to</span> <span class="k">listen</span> <span class="k">on</span> <span class="n">a</span> <span class="n">unix</span> <span class="n">socket</span><span class="p">.</span>
+<span class="p">;</span> <span class="n">Note</span><span class="p">:</span> <span class="n">This</span> <span class="n">value</span> <span class="k">is</span> <span class="n">mandatory</span><span class="p">.</span>
+
+<span class="k">listen</span> <span class="o">=</span> <span class="mi">127</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">1</span><span class="p">:</span><span class="mi">9000</span>
+</code></pre></div>
+
+<h2>Installing MySQL</h2>
+<div class="highlight"><pre><span></span><code>$ sudo pkg_add -v mysql-server-5.1.73p0v0.tgz
+
+Update candidates: quirks-2.9 -&gt; quirks-2.9 <span class="o">(</span>ok<span class="o">)</span>
+quirks-2.9 signed on <span class="m">2014</span>-07-31T22:37:55Z
+mysql-server-5.1.73p0v0:p5-Net-Daemon-0.48: ok
+mysql-server-5.1.73p0v0:p5-PlRPC-0.2018p1: ok
+mysql-server-5.1.73p0v0:p5-Clone-0.36p0: ok
+mysql-server-5.1.73p0v0:p5-Params-Util-1.07p0: ok
+mysql-server-5.1.73p0v0:p5-SQL-Statement-1.405: ok
+mysql-server-5.1.73p0v0:p5-FreezeThaw-0.5001: ok
+mysql-server-5.1.73p0v0:p5-MLDBM-2.05: ok
+mysql-server-5.1.73p0v0:p5-DBI-1.631p0: ok
+mysql-server-5.1.73p0v0:mysql-client-5.1.73v0: ok
+mysql-server-5.1.73p0v0:p5-DBD-mysql-4.027: ok
+mysql-server-5.1.73p0v0: ok
+The following new rcscripts were installed: /etc/rc.d/mysqld
+See rc.d<span class="o">(</span><span class="m">8</span><span class="o">)</span> <span class="k">for</span> details.
+Look in /usr/local/share/doc/pkg-readmes <span class="k">for</span> extra documentation.
+Extracted <span class="m">39040357</span> from <span class="m">39044890</span>
+</code></pre></div>
+
+<h3>Initial setup</h3>
+<p>Later to install MySQL you need setup this.</p>
+<p>Create the initial database:</p>
+<div class="highlight"><pre><span></span><code>$ sudo /usr/local/bin/mysql_install_db
+</code></pre></div>
+
+<p>You can run the <code>/usr/local/bin/mysql_secure_installation</code> script for optimize your mysql installation or 
+set the root password directly with the next command.</p>
+<div class="highlight"><pre><span></span><code>$ sudo /usr/local/bin/mysqladmin -u root password <span class="s1">&#39;password&#39;</span>
+</code></pre></div>
+
+<p>And execute mysql as root for administrations tasks only, you can create databases and users.</p>
+<div class="highlight"><pre><span></span><code>$ mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with <span class="p">;</span> or <span class="se">\g</span>.
+Your MySQL connection id is <span class="m">47</span>
+Server version: <span class="m">5</span>.1.73-log OpenBSD port: mysql-server-5.1.73p0v0
+
+Copyright <span class="o">(</span>c<span class="o">)</span> <span class="m">2000</span>, <span class="m">2013</span>, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type <span class="s1">&#39;help;&#39;</span> or <span class="s1">&#39;\h&#39;</span> <span class="k">for</span> help. Type <span class="s1">&#39;\c&#39;</span> to clear the current input statement.
+
+mysql&gt;
+</code></pre></div>
+
+<h3>MySQL support for PHP</h3>
+<div class="highlight"><pre><span></span><code>$ sudo pkg_add -v php-pdo_mysql-5.5.14.tgz
+</code></pre></div>
+
+<h2>Starting daemons</h2>
+<div class="highlight"><pre><span></span><code>$ sudo /etc/rc.d/nginx start
+$ sudo /etc/rc.d/php-fpm start
+$ sudo /etc/rc.d/mysqld start
+</code></pre></div>
+
+<p>You can write a basic <code>info.php</code> file into documentroot, in my case, /var/www/htdocs/example.com</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+    <span class="nb">phpinfo</span><span class="p">();</span>
+<span class="cp">?&gt;</span>
+</code></pre></div>
+
+<p>if all is ok, then you can view the PHP information web page.</p>
+<h2>Logs</h2>
+<p>Basic log files are found in <code>/var/log/nginx</code> subdirectory for audit purposes.</p>
+<p>Enjoy.</p>
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "blogdefranciscovalladolid"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; BSDguy.org &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>

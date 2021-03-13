@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BSDguy.org, ">
+
+
+        <title>blog category // BSDguy.org // </title>
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../theme/css/pure.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+<div class="sidebar pure-u">
+    <div class="cover-img" style="background-image: url('images/banner.jpg')">
+        <div class="cover-body">
+            <header class="header">
+                <hgroup>
+                    <h1 class="brand-main"><a href="/">BSDguy.org</a></h1>
+                    <p class="tagline"></p>
+                    <p class="social">
+                        <a href="http://twitter.com/ficovh">
+                            <i class="fa fa-twitter fa-3x"></i>
+                        </a>
+                        <a href="http://github.com/ficovh">
+                            <i class="fa fa-github fa-3x"></i>
+                        </a>
+                        <a href="https://gitlab.com/ficovh">
+                            <i class="fa fa-gitlab fa-3x"></i>
+                        </a>
+                    <p>
+                </hgroup>
+            </header>
+        </div>
+    </div>
+</div>    <div class="pure-u-1">
+        <div class="content">
+            <!-- A wrapper for all the blog posts -->
+            <div class="posts">
+                <h1 class="content-subhead">
+Posts in 'blog'                </h1>
+<section class="post">
+    <header class="post-header">
+        <a href="../author/francisco-valladolid.html" title="See posts by Francisco Valladolid">
+                <img class="avatar" alt="Francisco Valladolid" src="https://www.gravatar.com/avatar/ab1e128805502b007dd29966ca93273c">
+        </a>
+        <h3><a class="post-title" href="../getops-es.html">getopt in C</a></h3>
+            <p class="post-meta"><h3>Funcion getopt en C - Linux/BSD y variantes unicamente.</h3>
+<h2>Definición.</h2>
+<p><strong>getopt()</strong> es una función escrita en lenguaje C para analizar argumentos en la linea de comandos.</p>
+<h2>Sintaxis.</h2>
+<div class="highlight"><pre><span></span><code>  <span class="n">getopt</span><span class="p">(</span><span class="nb">int</span> <span class="n">argc</span><span class="p">,</span> <span class="nb">char</span> <span class="o">*</span><span class="n">const</span> <span class="n">argv</span><span class="p">[],</span> <span class="n">const</span> <span class="nb">char</span> <span class="o">*</span><span class="n">optstring</span><span class="p">)</span>
+
+  <span class="n">Donde</span> <span class="n">optstring</span> <span class="n">es</span> <span class="n">una</span> <span class="n">lista</span> <span class="n">de</span> <span class="n">caracteres</span><span class="p">,</span> 
+  <span class="n">cada</span> <span class="n">uno</span> <span class="n">representando</span> <span class="n">una</span> <span class="n">opción</span><span class="p">.</span>
+</code></pre></div>
+
+<h2>Valores de …</h2></p>
+            <p class="post-meta">
+                in <a href="../category/blog.html">blog</a> &middot; Fri 12 March 2021
+            </p>
+    </header>
+</section><section class="post">
+    <header class="post-header">
+        <a href="../author/francisco-valladolid.html" title="See posts by Francisco Valladolid">
+                <img class="avatar" alt="Francisco Valladolid" src="https://www.gravatar.com/avatar/ab1e128805502b007dd29966ca93273c">
+        </a>
+        <h3><a class="post-title" href="../random-str-perl-es.html">Cadenas aleatorias en Perl</a></h3>
+            <p class="post-meta"><p>La siguiente linea de codigo genera una cadena aleatoria en <a class="reference external" href="http://www.perl.org">perl</a>.</p>
+<div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span> <span class="nb">map</span> <span class="p">{</span> <span class="p">(</span><span class="s">&quot;a&quot;</span><span class="o">..</span><span class="s">&quot;z&quot;</span><span class="p">,</span> <span class="s">&#39;0&#39;</span><span class="o">..</span><span class="s">&#39;9&#39;</span><span class="p">)[</span><span class="nb">rand</span> <span class="mi">36</span><span class="p">]</span> <span class="p">}</span> <span class="mi">1</span><span class="o">..</span><span class="mi">4</span> <span class="p">);</span>
+</pre></div>
+<p>Básicamente la función map itera sobre el conjunto de caracteres 'a' la 'z' y '0' al '9' generando cuatro caracteres aleatorios.</p>
+</p>
+            <p class="post-meta">
+                in <a href="../category/blog.html">blog</a> &middot; Mon 04 January 2021
+            </p>
+    </header>
+</section><section class="post">
+    <header class="post-header">
+        <a href="../author/francisco-valladolid.html" title="See posts by Francisco Valladolid">
+                <img class="avatar" alt="Francisco Valladolid" src="https://www.gravatar.com/avatar/ab1e128805502b007dd29966ca93273c">
+        </a>
+        <h3><a class="post-title" href="../python-pip-es.html">Python tips</a></h3>
+            <p class="post-meta"><p>Recién instalé <a href="https://www.openbsd.org">OpenBSD-6.7</a> en mi computadora personal, acto seguido instalé <a href="http://www.python.org">Python</a>
+desde la rama estable de paquetes.</p>
+<p>Por alguna razón <a href="http://www.python.org">Python-3.8</a> no incluye <a href="https://www.pypi.org/project/pip">pip</a> por default, encontre una forma
+rápida de instalar el modulo.</p>
+<div class="highlight"><pre><span></span><code>$ python3.8 -m ensurepip --default-pip
+$ python3.8 -m pip install --upgrade pip
+</code></pre></div>
+
+<p>Estas instrucciones …</p></p>
+            <p class="post-meta">
+                in <a href="../category/blog.html">blog</a> &middot; Wed 17 June 2020
+            </p>
+    </header>
+</section><section class="post">
+    <header class="post-header">
+        <a href="../author/francisco-valladolid.html" title="See posts by Francisco Valladolid">
+                <img class="avatar" alt="Francisco Valladolid" src="https://www.gravatar.com/avatar/ab1e128805502b007dd29966ca93273c">
+        </a>
+        <h3><a class="post-title" href="../sed-basico-es.html">sed basico</a></h3>
+            <p class="post-meta"><div class="section" id="que-es-sed">
+<h2>¿Que es Sed?</h2>
+<p><em>sed (Stream Editor)</em> es un editor de flujos, te permite editar, reemplazar lineas en un archivo de texto
+usando expresiones regulares.</p>
+<p>El sistema operativo Unix tiene un superconjunto de comandos que permiten
+realizar todo tipo de tareas de procesamiento de archivos de texto.</p>
+<p>El superconjunto incluye: <em>sed …</em></p></div></p>
+            <p class="post-meta">
+                in <a href="../category/blog.html">blog</a> &middot; Wed 27 May 2020
+            </p>
+    </header>
+</section><section class="post">
+    <header class="post-header">
+        <a href="../author/francisco-valladolid.html" title="See posts by Francisco Valladolid">
+                <img class="avatar" alt="Francisco Valladolid" src="https://www.gravatar.com/avatar/ab1e128805502b007dd29966ca93273c">
+        </a>
+        <h3><a class="post-title" href="../markdown-es.html">Markdown en unas lineas</a></h3>
+            <p class="post-meta"><p><em>Markdown</em> es un formato muy simple usado en la actualidad para publicar documentos para la web, ademas de muy sencillo es altamente portable y facil exportable a otros formatos, a continuacion resumo en un bloque.</p>
+<div class="highlight"><pre><span></span><code>  <span class="cp"># Esto es un Encabezado</span>
+  <span class="cp">## Esto es un subencabezado</span>
+
+<span class="o">**</span> <span class="n">Negritas</span> <span class="o">**</span> 
+<span class="n">_Cursiva_</span>
+<span class="err">`</span><span class="n">Monospace</span><span class="err">`</span>
+
+<span class="p">[</span><span class="n">Un</span> <span class="n">Enlace</span><span class="p">](</span><span class="nl">https</span><span class="p">:</span><span class="c1">//blog …</span></code></pre></div></p>
+            <p class="post-meta">
+                in <a href="../category/blog.html">blog</a> &middot; Sat 23 May 2020
+            </p>
+    </header>
+</section><section class="post">
+    <header class="post-header">
+        <a href="../author/francisco-valladolid.html" title="See posts by Francisco Valladolid">
+                <img class="avatar" alt="Francisco Valladolid" src="https://www.gravatar.com/avatar/ab1e128805502b007dd29966ca93273c">
+        </a>
+        <h3><a class="post-title" href="../ssh-keys-es.html">Generando llaves SSH</a></h3>
+            <p class="post-meta"><p>Use el comando <a href="https://man.openbsd.org/ssh-keygen.1">ssh-heygen(1)</a> para crear un par de llaves usando el tipo ed25519 para incrementar la seguridad.</p>
+<div class="highlight"><pre><span></span><code><span class="err">$</span><span class="w">  </span><span class="n">ssh</span><span class="o">-</span><span class="n">keygen</span><span class="w"> </span><span class="o">-</span><span class="n">o</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="n">ed25519</span><span class="w"> </span><span class="o">-</span><span class="n">a</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="o">~/</span><span class="p">.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_ed25519</span><span class="w"> </span>
+<span class="n">Generating</span><span class="w"> </span><span class="k">public</span><span class="o">/</span><span class="n">private</span><span class="w"> </span><span class="n">ed25519</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="n">pair</span><span class="p">.</span><span class="w"></span>
+<span class="n">Enter</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">which</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">save</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">userX</span><span class="o">/</span><span class="p">.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_ed25519</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="n">Generating</span><span class="w"> </span><span class="k">public</span><span class="o">/</span><span class="n">private …</span></code></pre></div></p>
+            <p class="post-meta">
+                in <a href="../category/blog.html">blog</a> &middot; Sun 17 May 2020
+            </p>
+    </header>
+</section><section class="post">
+    <header class="post-header">
+        <a href="../author/francisco-valladolid.html" title="See posts by Francisco Valladolid">
+                <img class="avatar" alt="Francisco Valladolid" src="https://www.gravatar.com/avatar/ab1e128805502b007dd29966ca93273c">
+        </a>
+        <h3><a class="post-title" href="../pelican.html">Make a static website with Pelican</a></h3>
+            <p class="post-meta"><h2>What is Pelican?</h2>
+<p>According to the website, Pelican is a static website generator written in Python programming language.
+Pelican parse documents in Markdown, reStructuredText and AsciiDoc file formats.</p>
+<h2>Features</h2>
+<ul>
+<li>Articles (e.g., blog posts) and pages (e.g., “About”, “Projects”, “Contact”)</li>
+<li>Comments, via an external service (Disqus). If you prefer …</li></ul></p>
+            <p class="post-meta">
+                in <a href="../category/blog.html">blog</a> &middot; Mon 19 March 2018
+            </p>
+    </header>
+</section><section class="post">
+    <header class="post-header">
+        <a href="../author/francisco-valladolid.html" title="See posts by Francisco Valladolid">
+        </a>
+        <h3><a class="post-title" href="../nginx-openbsd56.html">Nginx - PHP-FPM - MySQL OpenBSD 5.6</a></h3>
+            <p class="post-meta"><p><strong>El siguiente articulo esta en Ingles y fue escrito por mi para www.vultr.com.</strong></p>
+<p>OpenBSD is most used in firewall implementations,however, many people around the world are using OpenBSD as web server, mainly programmers and sysadmins.
+We assume a knowledge of OpenBSD, nginx and Unix in general.</p>
+<p>nginx …</p></p>
+            <p class="post-meta">
+                in <a href="../category/blog.html">blog</a> &middot; Sat 04 April 2015
+            </p>
+    </header>
+</section><section class="post">
+    <header class="post-header">
+        <a href="../author/francisco-valladolid.html" title="See posts by Francisco Valladolid">
+        </a>
+        <h3><a class="post-title" href="../pf-attack-es.html">Bloqueando intentos masivos por SSH</a></h3>
+            <p class="post-meta"><p>PF (packet filter) es el filtro de paquetes por defecto en OpenBSD desde la version 3.0, su uso mas frecuente
+es en Firewall y control de ancho de banda por tipo de trafico.</p>
+<p>Pf se puede usar para bloquear intentos fallidos por SSH u otro protocolo, ejemplo:
+Si leemos …</p></p>
+            <p class="post-meta">
+                in <a href="../category/blog.html">blog</a> &middot; Sun 15 February 2015
+            </p>
+    </header>
+</section><section class="post">
+    <header class="post-header">
+        <a href="../author/francisco-valladolid.html" title="See posts by Francisco Valladolid">
+        </a>
+        <h3><a class="post-title" href="../httpd-openbsd-es.html">Servidor web OpenBSD httpd nativo</a></h3>
+            <p class="post-meta"><p>Recien se libero la version 5.6 de <a class="reference external" href="http://www.openbsd.org">OpenBSD</a> y dentro de las novedades se encuetra un servidor web ligero que sustituye a Apache 1.3.</p>
+<p><a class="reference external" href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man8/httpd.8?query=httpd">httpd(8)</a>
+como se le conoce, es un servidor httpd con soporte FastCGI y SSL.</p>
+<p>La configuracion para httpd es simple, escribi un breve …</p></p>
+            <p class="post-meta">
+                in <a href="../category/blog.html">blog</a> &middot; Thu 13 November 2014
+            </p>
+    </header>
+</section><div class="pagination-wrapper content-subhead">
+    <div class="pagination">
+        <div class="pagination-left">
+                &nbsp;
+        </div>
+        <span>Page 1 / 2</span>
+        <div class="pagination-right">
+                <a href="../category/blog2.html">Older posts&nbsp;&rarr;</a>
+        </div>
+    </div>
+</div><footer class="footer">
+    <p>&copy; BSDguy.org &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>            </div>
+        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>

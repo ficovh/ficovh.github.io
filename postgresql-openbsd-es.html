@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BSDguy.org, ">
+
+
+        <title>PostgreSQL en OpenBSD // BSDguy.org // </title>
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./theme/css/pure.css">
+    <link rel="stylesheet" href="./theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="./author/francisco-valladolid.html" title="See posts by Francisco Valladolid">
+                </a>
+                <h2 class="article-info">Francisco Valladolid</h2>
+                <small class="about-author"></small>
+                <h5>Published</h5>
+                <p>Thu 04 October 2012</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>PostgreSQL en OpenBSD</h1>
+                        <p class="post-meta">
+                            // under                                 <a class="post-category" href="./tag/openbsd.html">openbsd</a>
+                                <a class="post-category" href="./tag/postgresql.html">postgresql</a>
+                                <a class="post-category" href="./tag/bsd.html">bsd</a>
+                                <a class="post-category" href="./tag/dbms.html">dbms</a>
+                        </p>
+                </header>
+            </section>
+            <p>Tengo un VPS corriendo <a class="reference external" href="http://www.openbsd.org">OpenBSD</a> 5.0 y
+necesito instalar PostgreSQL. Algunas veces es necesario escribir para
+no olvidar, sobre todo en cuestiones triviales. La forma mas facil es
+instalar PostgreSQL en OpenBSD es via paquetes binarios, existe una
+forma a traves de ports, mediante un conjuntos de makefiles para
+compilar paquetes desde los fuentes; Si tienes instalado ports, la forma
+de hacerlo es:</p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> /usr/ports/databases/postgresql
+<span class="gp">$</span> sudo make install clean
+</pre></div>
+<p>Y con binarios:</p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">export</span> <span class="nv">PKG_PATH</span><span class="o">=</span>ftp://ftp.openbsd.org/pub/OpenBSD/5.0/packages/i386
+<span class="gp">$</span> sudo pkg_add -v postgresql-server-9.0.4p1.tgz
+</pre></div>
+<p>La version server, automaticamente resuelve las dependencias e instala la
+version cliente, una vez instalada tendremos que iniciar el cluster
+donde PostgreSQL almacenara las bases de datos y solo es posible con
+usuario _postgresql</p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo su - _postgresql
+<span class="gp">$</span> /usr/local/bin/initdb -D /var/postgresql/data
+</pre></div>
+<p>Lo anterior prepara el directorio /var/postgresql/data para poder ser
+usado mas adelante y a continuacion iniciamos el demonio para poder
+empezar a trabajar.</p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> /usr/local/bin/pg_ctl -D /var/postgresql/data -l logfile start
+<span class="go">  server starting</span>
+</pre></div>
+<p>Vamos a crear un usuario para poder crear bases de datos;</p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> psql postgres
+<span class="go">postgres=# create role db_admin login password &#39;algun_passw&#39; createdb</span>
+<span class="go">           valid until &#39;infinity&#39;;</span>
+<span class="go">CREATE ROLE</span>
+<span class="go">postgres=#</span>
+</pre></div>
+<p>Adicionalmente, editamos el archivo /var/postgresql/data/pg_hba.conf
+para agregar seguridad a nivel de usuario a la base de datos, usando el
+metodo md5, postgresql debe estar detenido.</p>
+<pre class="literal-block">
+local   all             all                                     md5
+</pre>
+<p>Es necesario dejar el usuario _postgresql y salir para probar nuestro
+trabajo, de esta manera el usuario db_admin y el password
+'algun_password' fue creado, la forma de acceder ahora es de la sig.
+manera.</p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> createdb -U db_admin book
+<span class="gp">$</span> psql -U db_admin book
+<span class="go">psql (9.0.4)</span>
+<span class="go">Type &quot;help&quot; for help.</span>
+
+<span class="go">book=&gt;</span>
+</pre></div>
+<p>Con esto hacemos una parte de la configuracion basica, PostgreSQL es un
+sistema de base de datos avanzado, profesional y libre compite con
+cualquier DBMS comercial actual. El sitio web de
+<a class="reference external" href="http://www.postgreSQL.org">PostgreSQL</a> contiene mas informacion
+sobre todos los detalles de este sistema. Si tu como yo estas usando
+OpenBSD, espero y esto pueda ayudarte un poco en esa tarea. Mas
+informacion:</p>
+<p><a class="reference external" href="http://www.openbsd.org">Sitio web de OpenBSD</a></p>
+<p><a class="reference external" href="http://www.postgresql.org/docs">Documentacion PostgreSQL</a></p>
+
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "blogdefranciscovalladolid"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; BSDguy.org &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>

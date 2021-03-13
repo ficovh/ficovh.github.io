@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BSDguy.org, ">
+
+
+        <title>Paquetes binarios con pkgin // BSDguy.org // </title>
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./theme/css/pure.css">
+    <link rel="stylesheet" href="./theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="./author/francisco-valladolid.html" title="See posts by Francisco Valladolid">
+                </a>
+                <h2 class="article-info">Francisco Valladolid</h2>
+                <small class="about-author"></small>
+                <h5>Published</h5>
+                <p>Wed 29 June 2011</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Paquetes binarios con pkgin</h1>
+                        <p class="post-meta">
+                            // under                                 <a class="post-category" href="./tag/netbsd.html">netbsd</a>
+                                <a class="post-category" href="./tag/unix.html">unix</a>
+                                <a class="post-category" href="./tag/bsd.html">bsd</a>
+                                <a class="post-category" href="./tag/pkgsrc.html">pkgsrc</a>
+                                <a class="post-category" href="./tag/pkgin.html">pkgin</a>
+                        </p>
+                </header>
+            </section>
+            <p>Uno de los principales incovenientes de los que muchos usuarios suelen
+quejarse al probar NetBSD es su sistema de paquetes (pkgsrc), ya que
+cada programa necesita ser compilado desde los fuentes y probado lo que
+llega a ser tedioso y algunas veces frustrante. El tiempo de compilacion
+e instalacion llegar a ser critico tratandose de meta-programas; Por
+ejemplo; compilar OpenOffice 3 quiza tarde unas seis horas o mas
+dependiendo del equipo, consumiendo recursos, tiempo y en ocasiones
+pueden presentarse problemas de compilacion; es posible que despues de
+esto detalles, dejemos el sistema y sigamos con lo que estamos
+acostumbrados a usar.</p>
+<p>Afortunadamente ahora existe <a class="reference external" href="http://pkgin.net/">pkgin</a>, una utileria al estilo &quot;apt-get&quot; o &quot;yum&quot;
+para instalar paquetes binarios bajo NetBSD.
+Es una forma atractiva y facil, eliminando el mito aquel de compilar desde fuentes.</p>
+<p>Puedes bajar el binario de <a class="reference external" href="http://pkgin.net/">pkgin</a> desde el sitio
+ftp e instalarlo manualmente con
+<a class="reference external" href="http://netbsd.gw.com/cgi-bin/man-cgi?pkg_add++NetBSD-current">pkg_add(1)</a>
+y despues proceder con la configuracion anterior.</p>
+<p><a class="reference external" href="http://pkgin.net/">pkgin</a> usa un simple archivo .conf ubicado en
+<em>/usr/pkg/etc/pkgin/repositories.conf</em>, este archivo acepta lineas
+apuntando a servidores ftp o http con depositos de paquetes binarios de
+NetBSD para una version determinada.</p>
+<p>Por ejemplo:
+<em>ftp://ftp.fr.netbsd.org/pub/pkgsrc/packages/NetBSD/i386/5.0/All</em></p>
+<p>Esta linea contiene paquetes binarios para NetBSD 5.0 y la plataforma i386.
+Un simple: <em>$ sudo pkgin update</em> creara una lista de paquetes y sus
+dependecias en una base de datos sqlite3 listos para ser instalados.</p>
+<div class="section" id="ejemplos">
+<h2>Ejemplos:</h2>
+<p>Para instalar Apache y sus dependencias:</p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo pking install apache-2.2.17
+</pre></div>
+<p>Para buscar mysql en la base de datos:</p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo pkgin se mysql
+</pre></div>
+<p>Para ver las las opciones de <a class="reference external" href="http://pkgin.net/">pkgin</a> solo ejecuta
+el programa sin argumentos.
+Tener un sistema NetBSD con los paquetes necesarios es realmente sencillo
+con esta utileria, lo mismo para meta-paquetes como gnome, xfce4, kde,
+e incluso puedes tener un servidor AMP (Apache, MySQL, Perl/PHP)
+en cuestion de minutos sin esfuerzo, con el soporte del extraordinario pkgsrc.</p>
+</div>
+
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "blogdefranciscovalladolid"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; BSDguy.org &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>

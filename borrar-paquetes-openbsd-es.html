@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BSDguy.org, ">
+
+
+        <title>Borrando paquetes en OpenBSD // BSDguy.org // </title>
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./theme/css/pure.css">
+    <link rel="stylesheet" href="./theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="./author/francisco-valladolid.html" title="See posts by Francisco Valladolid">
+                </a>
+                <h2 class="article-info">Francisco Valladolid</h2>
+                <small class="about-author"></small>
+                <h5>Published</h5>
+                <p>Thu 04 October 2012</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Borrando paquetes en OpenBSD</h1>
+                        <p class="post-meta">
+                            // under                                 <a class="post-category" href="./tag/openbsd.html">openbsd</a>
+                                <a class="post-category" href="./tag/ports.html">ports</a>
+                                <a class="post-category" href="./tag/paquetes.html">paquetes</a>
+                                <a class="post-category" href="./tag/pkgtools.html">pkgtools</a>
+                        </p>
+                </header>
+            </section>
+            <p>Algunas veces borrar un numero determinado de paquetes en OpenBSD puede
+ser un trabajo arduo; pkg_delete aun no puede usar comodines para poder
+filtrar un patron de paquetes que no deseamos mas en nuestro sistema.</p>
+<p>OpenBSD esta pensando para personas con un nivel distinto a
+los demas y piensa que pueden escribir sus propias rutinas, para hacer
+X o Y cosas con el sistema.</p>
+<p>Por ejemplo:</p>
+<pre class="literal-block">
+$ pkg_delete -ax ruby-*.*
+</pre>
+<p>Esto no funciona aun, sin embargo, podemos escribir un script que de manera
+automatica nos permita hacer la tarea que queremos; quiza
+alguien tenga otra mejor, Yo deseo quitar todos los paquetes del
+lenguaje Ruby en mi sistema, no necesito mas esto, el pkg_info revela
+una lista de mas de 20 paquetes instalados.</p>
+<div class="highlight"><pre><span></span>$ pkg_info <span class="p">|</span> grep ruby <span class="p">|</span> awk <span class="s1">&#39;{print $1}&#39;</span>
+</pre></div>
+<p>La instruccion anterior en el shell de OpenBSD, nos proporciona una
+lista de todas las coincidencias con ruby, usando solo el nombre del
+paquete, y con ello puedo iterar a traves de la lista.</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+<span class="nv">packages</span><span class="o">=</span><span class="sb">`</span>pkg_info <span class="p">|</span> grep ruby <span class="p">|</span> awk <span class="s1">&#39;{print $1}&#39;</span><span class="sb">`</span>
+<span class="k">for</span> i in <span class="nv">$packages</span>
+<span class="k">do</span>
+        pkg_delete  -ax <span class="nv">$i</span>
+        <span class="nb">echo</span> <span class="s2">&quot;Borrando: </span><span class="nv">$i</span><span class="s2"> ...&quot;</span>
+<span class="k">done</span>
+</pre></div>
+<p>El codigo anterior permite consultar, almacenar en una variable e
+iterar a traves de la lista para borrar uno a uno los paquetes en
+cuestion. No se si haya una forma mas facil de hacerlo, pero fue lo que
+tuve a la mano en el momento de la urgencia.</p>
+
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "blogdefranciscovalladolid"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; BSDguy.org &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>
