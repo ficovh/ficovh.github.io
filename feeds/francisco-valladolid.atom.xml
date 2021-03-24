@@ -1,22 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>BSDguy.org - Francisco Valladolid</title><link href="http://blog.bsdguy.org/" rel="alternate"></link><link href="http://blog.bsdguy.org/feeds/francisco-valladolid.atom.xml" rel="self"></link><id>http://blog.bsdguy.org/</id><updated>2021-03-12T00:00:00+01:00</updated><entry><title>getopt in C</title><link href="http://blog.bsdguy.org/getops-es.html" rel="alternate"></link><published>2021-03-12T00:00:00+01:00</published><updated>2021-03-12T00:00:00+01:00</updated><author><name>Francisco Valladolid</name></author><id>tag:blog.bsdguy.org,2021-03-12:/getops-es.html</id><summary type="html">&lt;h3&gt;Funcion getopt en C - Linux/BSD y variantes unicamente.&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>BSDguy.org - Francisco Valladolid</title><link href="http://blog.bsdguy.org/" rel="alternate"></link><link href="http://blog.bsdguy.org/feeds/francisco-valladolid.atom.xml" rel="self"></link><id>http://blog.bsdguy.org/</id><updated>2021-03-23T00:00:00+01:00</updated><entry><title>Usando most para colorear man pages</title><link href="http://blog.bsdguy.org/most-es.html" rel="alternate"></link><published>2021-03-23T00:00:00+01:00</published><updated>2021-03-23T00:00:00+01:00</updated><author><name>Francisco Valladolid</name></author><id>tag:blog.bsdguy.org,2021-03-23:/most-es.html</id><summary type="html">&lt;h3&gt;Coloreando &lt;code&gt;man pages&lt;/code&gt; en sistemas tipo Unix.&lt;/h3&gt;
+&lt;p&gt;Las &lt;code&gt;man&lt;/code&gt; pages son la documentacion oficinal para sistemas tipo Unix (BSD/Linux) el comando &lt;a href="http://man.netbsd.org/man.1"&gt;man&lt;/a&gt; seguido del nombre de un programa muestra la documentacion para este, por ejemplo:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$ man  echo&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=""&gt;&lt;img alt="man echo" src="https://i.imgur.com/QvEO7OXl.png"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;most&lt;/em&gt; puede ser instalado con el gestor de paquetes de tu sistema …&lt;/p&gt;</summary><content type="html">&lt;h3&gt;Coloreando &lt;code&gt;man pages&lt;/code&gt; en sistemas tipo Unix.&lt;/h3&gt;
+&lt;p&gt;Las &lt;code&gt;man&lt;/code&gt; pages son la documentacion oficinal para sistemas tipo Unix (BSD/Linux) el comando &lt;a href="http://man.netbsd.org/man.1"&gt;man&lt;/a&gt; seguido del nombre de un programa muestra la documentacion para este, por ejemplo:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$ man  echo&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=""&gt;&lt;img alt="man echo" src="https://i.imgur.com/QvEO7OXl.png"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;most&lt;/em&gt; puede ser instalado con el gestor de paquetes de tu sistema operativo, en mi caso estoy usando &lt;a href="https://www.netbsd.org"&gt;NetBSD&lt;/a&gt; y &lt;em&gt;pkgin&lt;/em&gt; para instalar paquetes binarios.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt; $ sudo pkgin in most
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;El siguiente paso es definir el paginador por default en el archivo de configuracion de nuestro shell, en mi caso &lt;em&gt;zsh&lt;/em&gt;, por ejemplo:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt; &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;export PAGER=most&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;~/.&lt;/span&gt;&lt;span class="n"&gt;zshrc&lt;/span&gt;
+ &lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zshrc&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Ahora, la proxima vez que se invoque el comando &lt;em&gt;man echo&lt;/em&gt; la pagina del manual del comando &lt;em&gt;echo&lt;/em&gt; tendrà una apariencia distinta e incluira colores en la estructura.&lt;/p&gt;
+&lt;p&gt;&lt;a href=""&gt;&lt;img alt="man echo" src="https://i.imgur.com/OUO7qIKl.jpg"&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="blog"></category><category term="Unix man linux netbsd openbsd freebsd pages doc"></category></entry><entry><title>getopt in C</title><link href="http://blog.bsdguy.org/getops-es.html" rel="alternate"></link><published>2021-03-12T00:00:00+01:00</published><updated>2021-03-12T00:00:00+01:00</updated><author><name>Francisco Valladolid</name></author><id>tag:blog.bsdguy.org,2021-03-12:/getops-es.html</id><summary type="html">&lt;h3&gt;Funcion getopt en C - Linux/BSD y variantes unicamente.&lt;/h3&gt;
 &lt;h2&gt;Definición.&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;getopt()&lt;/strong&gt; es una función escrita en lenguaje C para analizar argumentos en la linea de comandos.&lt;/p&gt;
 &lt;h2&gt;Sintaxis.&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;  &lt;span class="n"&gt;getopt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;const&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[],&lt;/span&gt; &lt;span class="n"&gt;const&lt;/span&gt; &lt;span class="nb"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;optstring&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;  &lt;span class="n"&gt;getopt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb nb-Type"&gt;int&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[],&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="nb"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;optstring&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
   &lt;span class="n"&gt;Donde&lt;/span&gt; &lt;span class="n"&gt;optstring&lt;/span&gt; &lt;span class="n"&gt;es&lt;/span&gt; &lt;span class="n"&gt;una&lt;/span&gt; &lt;span class="n"&gt;lista&lt;/span&gt; &lt;span class="n"&gt;de&lt;/span&gt; &lt;span class="n"&gt;caracteres&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
-  &lt;span class="n"&gt;cada&lt;/span&gt; &lt;span class="n"&gt;uno&lt;/span&gt; &lt;span class="n"&gt;representando&lt;/span&gt; &lt;span class="n"&gt;una&lt;/span&gt; &lt;span class="n"&gt;opción&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+  &lt;span class="n"&gt;cada&lt;/span&gt; &lt;span class="n"&gt;uno&lt;/span&gt; &lt;span class="n"&gt;representando&lt;/span&gt; &lt;span class="n"&gt;una&lt;/span&gt; &lt;span class="n"&gt;opción&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h2&gt;Valores de …&lt;/h2&gt;</summary><content type="html">&lt;h3&gt;Funcion getopt en C - Linux/BSD y variantes unicamente.&lt;/h3&gt;
 &lt;h2&gt;Definición.&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;getopt()&lt;/strong&gt; es una función escrita en lenguaje C para analizar argumentos en la linea de comandos.&lt;/p&gt;
 &lt;h2&gt;Sintaxis.&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;  &lt;span class="n"&gt;getopt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;const&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[],&lt;/span&gt; &lt;span class="n"&gt;const&lt;/span&gt; &lt;span class="nb"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;optstring&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;  &lt;span class="n"&gt;getopt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb nb-Type"&gt;int&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[],&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="nb"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;optstring&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
   &lt;span class="n"&gt;Donde&lt;/span&gt; &lt;span class="n"&gt;optstring&lt;/span&gt; &lt;span class="n"&gt;es&lt;/span&gt; &lt;span class="n"&gt;una&lt;/span&gt; &lt;span class="n"&gt;lista&lt;/span&gt; &lt;span class="n"&gt;de&lt;/span&gt; &lt;span class="n"&gt;caracteres&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
-  &lt;span class="n"&gt;cada&lt;/span&gt; &lt;span class="n"&gt;uno&lt;/span&gt; &lt;span class="n"&gt;representando&lt;/span&gt; &lt;span class="n"&gt;una&lt;/span&gt; &lt;span class="n"&gt;opción&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+  &lt;span class="n"&gt;cada&lt;/span&gt; &lt;span class="n"&gt;uno&lt;/span&gt; &lt;span class="n"&gt;representando&lt;/span&gt; &lt;span class="n"&gt;una&lt;/span&gt; &lt;span class="n"&gt;opción&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h2&gt;Valores de retorno.&lt;/h2&gt;
@@ -122,16 +140,16 @@ algunos parametros antes y despues para exportarlo a un router Mikrotik.&lt;/p&g
 &lt;a class="reference external image-reference" href="https://i.imgur.com/NVhvxj6.png"&gt;&lt;img alt="" src="https://i.imgur.com/NVhvxj6m.png" /&gt;&lt;/a&gt;
 &lt;p&gt;Necesito sustituir los espacios en blanco por un caracter de nueva linea para
 crear una lista de usuarios, usamos el comando &lt;em&gt;sed&lt;/em&gt; de la siguiente forma.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sed &lt;span class="s1"&gt;&amp;#39;s/\s/\n/g&amp;#39;&lt;/span&gt; test.txt &amp;gt; sed1.txt
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;sed &lt;span class="s1"&gt;&amp;#39;s/\s/\n/g&amp;#39;&lt;/span&gt; test.txt &amp;gt; sed1.txt
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Después de ejcutar el comando, el archivo luce así.&lt;/p&gt;
 &lt;a class="reference external image-reference" href="https://i.imgur.com/tOXctyF.png"&gt;&lt;img alt="" src="https://i.imgur.com/tOXctyFm.png" /&gt;&lt;/a&gt;
 &lt;p&gt;Además de eso, necesito agregar una cadena de texto al inicio:  &lt;em&gt;add name=&lt;/em&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sed -i &lt;span class="s1"&gt;&amp;#39;s/^/add name\=/g&amp;#39;&lt;/span&gt; sed1.txt
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;sed -i &lt;span class="s1"&gt;&amp;#39;s/^/add name\=/g&amp;#39;&lt;/span&gt; sed1.txt
 &lt;/pre&gt;&lt;/div&gt;
 &lt;a class="reference external image-reference" href="https://i.imgur.com/MguwLUC.png"&gt;&lt;img alt="" src="https://i.imgur.com/MguwLUCm.png" /&gt;&lt;/a&gt;
 &lt;p&gt;Tambien necesito agregar al final la siguiente cadena:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sed -i &lt;span class="s1"&gt;&amp;#39;s/$/ limit-uptime\=02:00:00 disabled\=no profile\=\&amp;quot;1mega\&amp;quot;/g&amp;#39;&lt;/span&gt; sed1.txt
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;sed -i &lt;span class="s1"&gt;&amp;#39;s/$/ limit-uptime\=02:00:00 disabled\=no profile\=\&amp;quot;1mega\&amp;quot;/g&amp;#39;&lt;/span&gt; sed1.txt
 &lt;/pre&gt;&lt;/div&gt;
 &lt;a class="reference external image-reference" href="https://i.imgur.com/KhedLDe.png"&gt;&lt;img alt="" src="https://i.imgur.com/KhedLDem.png" /&gt;&lt;/a&gt;
 &lt;p&gt;Unix es un sistema operativo muy completo, como tal ya no existe, pero sus derivados si,
@@ -189,7 +207,7 @@ por citar algunos: &lt;em&gt;Linux, OpenBSD, FreeBSD, NetBSD, OSX&lt;/em&gt;.&lt
 &lt;span class="n"&gt;The&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;key&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;fingerprint&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;is&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="nl"&gt;SHA256&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;comment&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="n"&gt;The&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;key&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;randomart&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;image&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;is&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="c1"&gt;--[ED25519 256]--+&lt;/span&gt;
+&lt;span class="o"&gt;+--[&lt;/span&gt;&lt;span class="n"&gt;ED25519 256&lt;/span&gt;&lt;span class="o"&gt;]--+&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="o"&gt;*=&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;oX&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
@@ -199,7 +217,7 @@ por citar algunos: &lt;em&gt;Linux, OpenBSD, FreeBSD, NetBSD, OSX&lt;/em&gt;.&lt
 &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="n"&gt;O&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=+&lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;E&lt;/span&gt;&lt;span class="o"&gt;++++&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="c1"&gt;----[SHA256]-----+&lt;/span&gt;
+&lt;span class="o"&gt;+----[&lt;/span&gt;&lt;span class="n"&gt;SHA256&lt;/span&gt;&lt;span class="o"&gt;]-----+&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Graba&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;la&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;llave&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;privada&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;usando&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;el&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;nuevo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;formato&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;de&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;OpenSSH&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;
@@ -209,11 +227,16 @@ por citar algunos: &lt;em&gt;Linux, OpenBSD, FreeBSD, NetBSD, OSX&lt;/em&gt;.&lt
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;Los siguientes comandos te permiten copiar el contenido de tu llave al clipboard para subirla a servidor o a Github/Gitlab.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;en&lt;/span&gt; &lt;span class="n"&gt;OSX&lt;/span&gt;
-&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;pbcopy&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;id_ed25519&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pub&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;en OSX
+$ pbcopy &amp;lt; ~/.ssh/id_ed25519.pub
 
-&lt;span class="n"&gt;en&lt;/span&gt; &lt;span class="n"&gt;OpenBSD&lt;/span&gt;
-&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;xclip&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;selection&lt;/span&gt; &lt;span class="n"&gt;clipboard&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;id_ed25519&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pub&lt;/span&gt;
+en OpenBSD
+$ xclip -selection clipboard ~/.ssh/id_ed25519.pub
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;A continuacion agregamos nuestra llave al &lt;code&gt;ssh-agent&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ &lt;span class="nb"&gt;eval&lt;/span&gt; &lt;span class="sb"&gt;`&lt;/span&gt;ssh-agent -s&lt;span class="sb"&gt;`&lt;/span&gt;
+    $ ssh-add ~/.ssh/id_ed25519
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Ahora nuestras llaves SSH estan usando el algoritmo ed25519 y se encuentran en el directorio ~/.ssh/.&lt;/p&gt;
@@ -243,7 +266,7 @@ Pelican parse documents in Markdown, reStructuredText and AsciiDoc file formats.
 &lt;li&gt;Python 2.7.x or 3.3+&lt;/li&gt;
 &lt;li&gt;pip (package manager from python)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;  For this article, we are using python 3.6&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;  &lt;span class="k"&gt;For&lt;/span&gt; &lt;span class="nv"&gt;this&lt;/span&gt; &lt;span class="nv"&gt;article&lt;/span&gt;, &lt;span class="nv"&gt;we&lt;/span&gt; &lt;span class="nv"&gt;are&lt;/span&gt; &lt;span class="nv"&gt;using&lt;/span&gt; &lt;span class="nv"&gt;python&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;.&lt;span class="mi"&gt;6&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h2&gt;Installing Pelican.&lt;/h2&gt;
@@ -274,23 +297,23 @@ Pelican parse documents in Markdown, reStructuredText and AsciiDoc file formats.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h3&gt;Create the first article.&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;  &lt;span class="n"&gt;Title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;My&lt;/span&gt; &lt;span class="k"&gt;First&lt;/span&gt; &lt;span class="n"&gt;posts&lt;/span&gt;
-  &lt;span class="nb"&gt;Date&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2017&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;09&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;24&lt;/span&gt;
-  &lt;span class="n"&gt;Category&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Articles&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;  Title: My First posts
+  Date: 2017-11-09 18:24
+  Category: Articles
 
-  &lt;span class="n"&gt;This&lt;/span&gt; &lt;span class="k"&gt;is&lt;/span&gt; &lt;span class="n"&gt;my&lt;/span&gt; &lt;span class="k"&gt;first&lt;/span&gt; &lt;span class="n"&gt;post&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;Pelican&lt;/span&gt; &lt;span class="k"&gt;Static&lt;/span&gt; &lt;span class="n"&gt;website&lt;/span&gt; &lt;span class="n"&gt;generator&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+  This is my first post in the Pelican Static website generator.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;The previous example was written in Markdown file format, save it as:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt; ~/pelican-projects/myblog/content/first-post.md&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt; ~/pelican-projects/myblog/content/first-post.md
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h3&gt;Generate the site and Launching the preview.&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;    $ pelican -o output content&lt;/span&gt;
-&lt;span class="err"&gt;      Done: Processed 1 article, 0 drafts, 0 pages and 0 hidden pages in 0.27 seconds.&lt;/span&gt;
-&lt;span class="err"&gt;    $ cd ~/pelican-projects/myblog/output&lt;/span&gt;
-&lt;span class="err"&gt;    $ python -m http.server&lt;/span&gt;
-&lt;span class="err"&gt;      Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;    $ pelican -o output content
+      Done: Processed 1 article, 0 drafts, 0 pages and 0 hidden pages in 0.27 seconds.
+    $ cd ~/pelican-projects/myblog/output
+    $ python -m http.server
+      Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h3&gt;Settings.&lt;/h3&gt;
@@ -298,7 +321,7 @@ Pelican parse documents in Markdown, reStructuredText and AsciiDoc file formats.
 free to modify and add new variables.&lt;/p&gt;
 &lt;p&gt;The &lt;a href="https://github.com/getpelican/pelican-themes"&gt;pelican-themes&lt;/a&gt; in Github contain several themes for pelican, you can use a specific template by using
 the variable &lt;strong&gt;THEME&lt;/strong&gt; as follow in the &lt;em&gt;pelicanconf.py&lt;/em&gt; file&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;  THEME=&amp;#39;pelican-bootstrap3&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;  THEME=&amp;#39;pelican-bootstrap3&amp;#39;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h3&gt;Conclusions&lt;/h3&gt;
@@ -339,26 +362,26 @@ a     &lt;span class="m"&gt;0&lt;/span&gt;: &amp;lt;None&amp;gt;
 &lt;p&gt;The &lt;em&gt;/etc/rc.conf.local&lt;/em&gt; must be containt the next line&lt;/p&gt;
 &lt;p&gt;nginx_flags=""&lt;/p&gt;
 &lt;p&gt;And the &lt;em&gt;/etc/rc.conf&lt;/em&gt; for start automatically in each reboot.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# rc.d(8) packages scripts&lt;/span&gt;
-&lt;span class="err"&gt;# started in the specified order and stopped in reverse order&lt;/span&gt;
-&lt;span class="err"&gt;pkg_scripts=nginx&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# rc.d(8) packages scripts
+# started in the specified order and stopped in reverse order
+pkg_scripts=nginx
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt; Editing &lt;em&gt;/etc/nginx/nginx.conf&lt;/em&gt; and &lt;em&gt;/etc/php-fpm.conf&lt;/em&gt; &lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Basic requeriments for /etc/nginx/nginx.conf in the &lt;em&gt;server&lt;/em&gt; section.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;location ~ \.php$ {&lt;/span&gt;
-&lt;span class="err"&gt;            try_files $uri =404;&lt;/span&gt;
-&lt;span class="err"&gt;            fastcgi_split_path_info ^(.+\.php)(/.+)$;&lt;/span&gt;
-&lt;span class="err"&gt;            fastcgi_pass   127.0.0.1:9000;&lt;/span&gt;
-&lt;span class="err"&gt;            fastcgi_index index.php;&lt;/span&gt;
-&lt;span class="err"&gt;            fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;&lt;/span&gt;
-&lt;span class="err"&gt;            include fastcgi_params;&lt;/span&gt;
-&lt;span class="err"&gt;    }&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;location&lt;/span&gt; &lt;span class="o"&gt;~&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;php&lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="err"&gt;try_files&lt;/span&gt; &lt;span class="err"&gt;$uri&lt;/span&gt; &lt;span class="err"&gt;=404&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="err"&gt;fastcgi_split_path_info&lt;/span&gt; &lt;span class="err"&gt;^(.+\.php)(/.+)$&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="err"&gt;fastcgi_pass&lt;/span&gt;   &lt;span class="err"&gt;127.0.0.1:9000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="err"&gt;fastcgi_index&lt;/span&gt; &lt;span class="err"&gt;index.php&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="err"&gt;fastcgi_param&lt;/span&gt;  &lt;span class="err"&gt;SCRIPT_FILENAME&lt;/span&gt; &lt;span class="err"&gt;$document_root$fastcgi_script_name&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="err"&gt;include&lt;/span&gt; &lt;span class="err"&gt;fastcgi_params&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt;Edit /etc/php-fpm.conf&lt;/strong&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;Unix&lt;/span&gt; &lt;span class="k"&gt;user&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;group&lt;/span&gt; &lt;span class="k"&gt;of&lt;/span&gt; &lt;span class="n"&gt;processes&lt;/span&gt;
-&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;Note&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;The&lt;/span&gt; &lt;span class="k"&gt;user&lt;/span&gt; &lt;span class="k"&gt;is&lt;/span&gt; &lt;span class="n"&gt;mandatory&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="k"&gt;If&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="k"&gt;group&lt;/span&gt; &lt;span class="k"&gt;is&lt;/span&gt; &lt;span class="k"&gt;not&lt;/span&gt; &lt;span class="k"&gt;set&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="k"&gt;default&lt;/span&gt; &lt;span class="k"&gt;user&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;s &lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="nt"&gt;Unix&lt;/span&gt; &lt;span class="nt"&gt;user&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;group&lt;/span&gt; &lt;span class="nt"&gt;of&lt;/span&gt; &lt;span class="nt"&gt;processes&lt;/span&gt;
+&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="nt"&gt;Note&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;The&lt;/span&gt; &lt;span class="nt"&gt;user&lt;/span&gt; &lt;span class="nt"&gt;is&lt;/span&gt; &lt;span class="nt"&gt;mandatory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="nt"&gt;If&lt;/span&gt; &lt;span class="nt"&gt;the&lt;/span&gt; &lt;span class="nt"&gt;group&lt;/span&gt; &lt;span class="nt"&gt;is&lt;/span&gt; &lt;span class="nt"&gt;not&lt;/span&gt; &lt;span class="nt"&gt;set&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;the&lt;/span&gt; &lt;span class="nt"&gt;default&lt;/span&gt; &lt;span class="nt"&gt;user&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;s &lt;/span&gt;
 &lt;span class="s1"&gt;; group will be used.&lt;/span&gt;
 &lt;span class="s1"&gt;user = www&lt;/span&gt;
 &lt;span class="s1"&gt;group = www&lt;/span&gt;
@@ -366,14 +389,14 @@ a     &lt;span class="m"&gt;0&lt;/span&gt;: &amp;lt;None&amp;gt;
 
 &lt;span class="s1"&gt;; The address on which to accept FastCGI requests.&lt;/span&gt;
 &lt;span class="s1"&gt;; Valid syntaxes are:&lt;/span&gt;
-&lt;span class="s1"&gt;; &amp;#39;&lt;/span&gt;&lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="k"&gt;add&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;    - to listen on a TCP socket to a specific address on&lt;/span&gt;
+&lt;span class="s1"&gt;; &amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;ip&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;add&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;re&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nd"&gt;port&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;    - to listen on a TCP socket to a specific address on&lt;/span&gt;
 &lt;span class="s1"&gt;;                            a specific port;&lt;/span&gt;
-&lt;span class="s1"&gt;;   &amp;#39;&lt;/span&gt;&lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;                 - to listen on a TCP socket to all addresses on a&lt;/span&gt;
+&lt;span class="s1"&gt;;   &amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;port&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;                 - to listen on a TCP socket to all addresses on a&lt;/span&gt;
 &lt;span class="s1"&gt;;                            specific port;&lt;/span&gt;
-&lt;span class="s1"&gt;;   &amp;#39;&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;unix&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="k"&gt;listen&lt;/span&gt; &lt;span class="k"&gt;on&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;unix&lt;/span&gt; &lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;Note&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;This&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="k"&gt;is&lt;/span&gt; &lt;span class="n"&gt;mandatory&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="s1"&gt;;   &amp;#39;&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;path&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;to&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;unix&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;socket&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="nt"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;to&lt;/span&gt; &lt;span class="nt"&gt;listen&lt;/span&gt; &lt;span class="nt"&gt;on&lt;/span&gt; &lt;span class="nt"&gt;a&lt;/span&gt; &lt;span class="nt"&gt;unix&lt;/span&gt; &lt;span class="nt"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="nt"&gt;Note&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;This&lt;/span&gt; &lt;span class="nt"&gt;value&lt;/span&gt; &lt;span class="nt"&gt;is&lt;/span&gt; &lt;span class="nt"&gt;mandatory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
 
-&lt;span class="k"&gt;listen&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;127&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;9000&lt;/span&gt;
+&lt;span class="nt"&gt;listen&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;127&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nd"&gt;9000&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h2&gt;Installing MySQL&lt;/h2&gt;
@@ -394,7 +417,7 @@ mysql-server-5.1.73p0v0:p5-DBD-mysql-4.027: ok
 mysql-server-5.1.73p0v0: ok
 The following new rcscripts were installed: /etc/rc.d/mysqld
 See rc.d&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;8&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; details.
-Look in /usr/local/share/doc/pkg-readmes &lt;span class="k"&gt;for&lt;/span&gt; extra documentation.
+Look &lt;span class="k"&gt;in&lt;/span&gt; /usr/local/share/doc/pkg-readmes &lt;span class="k"&gt;for&lt;/span&gt; extra documentation.
 Extracted &lt;span class="m"&gt;39040357&lt;/span&gt; from &lt;span class="m"&gt;39044890&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -528,14 +551,14 @@ server &lt;span class="s2"&gt;&amp;quot;bsdguy.org&amp;quot;&lt;/span&gt; &lt;sp
 &lt;span class="o"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Es necesario agregar en rc.conf.local y en pkg_scripts=httpd para iniciar el servidor automaticamente.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo vi /etc/rc.conf.local
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;sudo vi /etc/rc.conf.local
 &lt;span class="go"&gt;httpd_flags=&amp;quot;&amp;quot;&lt;/span&gt;
 
-&lt;span class="gp"&gt;$&lt;/span&gt; sudo vi /etc/rc.conf
+&lt;span class="gp"&gt;$ &lt;/span&gt;sudo vi /etc/rc.conf
 &lt;span class="go"&gt;pkg_scripts=httpd&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Para iniciar el demonio:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo /etc/rc.d/httpd start
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;sudo /etc/rc.d/httpd start
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;a class="reference external" href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man8/httpd.8?query=httpd"&gt;httpd(8)&lt;/a&gt; es simple pero tiene FastCGI y SSL que lo hace atractivo, enhorabuena.&lt;/p&gt;
 </content><category term="blog"></category><category term="openbsd"></category><category term="web"></category><category term="httpd"></category></entry><entry><title>Mi nuevo blog</title><link href="http://blog.bsdguy.org/mi-nuevo-blog.html" rel="alternate"></link><published>2013-07-27T10:20:00+02:00</published><updated>2013-07-27T10:20:00+02:00</updated><author><name>Francisco Valladolid</name></author><id>tag:blog.bsdguy.org,2013-07-27:/mi-nuevo-blog.html</id><summary type="html">&lt;p&gt;Estoy migrando mi blog de &lt;a class="reference external" href="http://www.wordpress.org"&gt;WordPress&lt;/a&gt; a &lt;a class="reference external" href="http://www.getpelican.com"&gt;Pelican&lt;/a&gt;, una de las razones
@@ -580,7 +603,7 @@ lista de todas las coincidencias con ruby, usando solo el nombre del
 paquete, y con ello puedo iterar a traves de la lista.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/sh&lt;/span&gt;
 &lt;span class="nv"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;pkg_info &lt;span class="p"&gt;|&lt;/span&gt; grep ruby &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{print $1}&amp;#39;&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;
-&lt;span class="k"&gt;for&lt;/span&gt; i in &lt;span class="nv"&gt;$packages&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; i &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;$packages&lt;/span&gt;
 &lt;span class="k"&gt;do&lt;/span&gt;
         pkg_delete  -ax &lt;span class="nv"&gt;$i&lt;/span&gt;
         &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Borrando: &lt;/span&gt;&lt;span class="nv"&gt;$i&lt;/span&gt;&lt;span class="s2"&gt; ...&amp;quot;&lt;/span&gt;
@@ -601,28 +624,28 @@ instalar PostgreSQL en OpenBSD es via paquetes binarios, existe una
 forma a traves de ports, mediante un conjuntos de makefiles para
 compilar paquetes desde los fuentes; Si tienes instalado ports, la forma
 de hacerlo es:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; /usr/ports/databases/postgresql
-&lt;span class="gp"&gt;$&lt;/span&gt; sudo make install clean
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /usr/ports/databases/postgresql
+&lt;span class="gp"&gt;$ &lt;/span&gt;sudo make install clean
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Y con binarios:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;PKG_PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;ftp://ftp.openbsd.org/pub/OpenBSD/5.0/packages/i386
-&lt;span class="gp"&gt;$&lt;/span&gt; sudo pkg_add -v postgresql-server-9.0.4p1.tgz
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;PKG_PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;ftp://ftp.openbsd.org/pub/OpenBSD/5.0/packages/i386
+&lt;span class="gp"&gt;$ &lt;/span&gt;sudo pkg_add -v postgresql-server-9.0.4p1.tgz
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;La version server, automaticamente resuelve las dependencias e instala la
 version cliente, una vez instalada tendremos que iniciar el cluster
 donde PostgreSQL almacenara las bases de datos y solo es posible con
 usuario _postgresql&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo su - _postgresql
-&lt;span class="gp"&gt;$&lt;/span&gt; /usr/local/bin/initdb -D /var/postgresql/data
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;sudo su - _postgresql
+&lt;span class="gp"&gt;$ &lt;/span&gt;/usr/local/bin/initdb -D /var/postgresql/data
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Lo anterior prepara el directorio /var/postgresql/data para poder ser
 usado mas adelante y a continuacion iniciamos el demonio para poder
 empezar a trabajar.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; /usr/local/bin/pg_ctl -D /var/postgresql/data -l logfile start
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;/usr/local/bin/pg_ctl -D /var/postgresql/data -l logfile start
 &lt;span class="go"&gt;  server starting&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Vamos a crear un usuario para poder crear bases de datos;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; psql postgres
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;psql postgres
 &lt;span class="go"&gt;postgres=# create role db_admin login password &amp;#39;algun_passw&amp;#39; createdb&lt;/span&gt;
 &lt;span class="go"&gt;           valid until &amp;#39;infinity&amp;#39;;&lt;/span&gt;
 &lt;span class="go"&gt;CREATE ROLE&lt;/span&gt;
@@ -638,8 +661,8 @@ local   all             all                                     md5
 trabajo, de esta manera el usuario db_admin y el password
 'algun_password' fue creado, la forma de acceder ahora es de la sig.
 manera.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; createdb -U db_admin book
-&lt;span class="gp"&gt;$&lt;/span&gt; psql -U db_admin book
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;createdb -U db_admin book
+&lt;span class="gp"&gt;$ &lt;/span&gt;psql -U db_admin book
 &lt;span class="go"&gt;psql (9.0.4)&lt;/span&gt;
 &lt;span class="go"&gt;Type &amp;quot;help&amp;quot; for help.&lt;/span&gt;
 
@@ -681,15 +704,15 @@ colores en la edicion usando el proyecto Solarized.&lt;/p&gt;
 &lt;/dd&gt;
 &lt;/dl&gt;
 &lt;p&gt;Descargamos solarized para vim desde Github.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;%&lt;/span&gt; git clone git://github.com/altercation/vim-colors-solarized.git
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;% &lt;/span&gt;git clone git://github.com/altercation/vim-colors-solarized.git
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Esto creara un subdirectorio llamado vim-colors-solarized en nuestro
 /home y nosotros crearemos los directorios necesarios para usar la nueva
 configuracion de colores.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;%&lt;/span&gt; mkdir ~/.vim
-&lt;span class="gp"&gt;%&lt;/span&gt; mkdir ~/.vim/colors ~/.vim/autoload
-&lt;span class="gp"&gt;%&lt;/span&gt; cp ~/vim-colors-solarized/colors/solarized.vim ~/.vim/colors
-&lt;span class="gp"&gt;%&lt;/span&gt; cp ~/vim-colors-solarized/autoload/toglebg.vim ~/.vim/autoload
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;% &lt;/span&gt;mkdir ~/.vim
+&lt;span class="gp"&gt;% &lt;/span&gt;mkdir ~/.vim/colors ~/.vim/autoload
+&lt;span class="gp"&gt;% &lt;/span&gt;cp ~/vim-colors-solarized/colors/solarized.vim ~/.vim/colors
+&lt;span class="gp"&gt;% &lt;/span&gt;cp ~/vim-colors-solarized/autoload/toglebg.vim ~/.vim/autoload
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Un sencillo ~/.vimrc queda de la siguiente forma.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;syntax enable&lt;/span&gt;
@@ -725,17 +748,17 @@ instalacion de paquetes).&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;export PKG_PATH=ftp://ftp.openbsd.org/pub/OpenBSD/5.0/packages/i386&lt;/span&gt;
-&lt;span class="gp"&gt;$&lt;/span&gt; sudo pkg_add -v zsh-4.3.12 git-1.7.6p0
+&lt;span class="gp"&gt;$ &lt;/span&gt;sudo pkg_add -v zsh-4.3.12 git-1.7.6p0
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Cambiamos el shell a zsh&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; chsh -s /usr/local/bin/zsh
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;chsh -s /usr/local/bin/zsh
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Obtenemos &lt;a class="reference external" href="https://github.com/robbyrussell/oh-my-zsh"&gt;Oh-my-zsh&lt;/a&gt; via
 github en nuestro directorio local, renombramos el directorio creado y
 copiamos un .zshrc a nuestro home.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git clone git://github.com/robbyrussell/oh-my-zsh.git
-&lt;span class="gp"&gt;$&lt;/span&gt; mv oh-my-zsh .oh-my-zsh
-&lt;span class="gp"&gt;$&lt;/span&gt; cp .oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;git clone git://github.com/robbyrussell/oh-my-zsh.git
+&lt;span class="gp"&gt;$ &lt;/span&gt;mv oh-my-zsh .oh-my-zsh
+&lt;span class="gp"&gt;$ &lt;/span&gt;cp .oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Reiniciamos nuestra sesion, o en sucaso ejecutamos zsh directamente.
 Basta modificar nuestro &lt;strong&gt;.zshrc&lt;/strong&gt; y elegir el
@@ -875,10 +898,10 @@ dependecias en una base de datos sqlite3 listos para ser instalados.&lt;/p&gt;
 &lt;div class="section" id="ejemplos"&gt;
 &lt;h2&gt;Ejemplos:&lt;/h2&gt;
 &lt;p&gt;Para instalar Apache y sus dependencias:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo pking install apache-2.2.17
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;sudo pking install apache-2.2.17
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Para buscar mysql en la base de datos:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo pkgin se mysql
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;sudo pkgin se mysql
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Para ver las las opciones de &lt;a class="reference external" href="http://pkgin.net/"&gt;pkgin&lt;/a&gt; solo ejecuta
 el programa sin argumentos.

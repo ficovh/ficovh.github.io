@@ -1,56 +1,52 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="BSDguy.org, ">
+          <title>BSDguy.org - Nginx - PHP-FPM - MySQL OpenBSD 5.6</title>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
 
 
-        <title>Nginx - PHP-FPM - MySQL OpenBSD 5.6 // BSDguy.org // </title>
 
 
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./theme/css/pure.css">
-    <link rel="stylesheet" href="./theme/css/pygments.css">
+    <meta name="tags" content="nginx" />
+    <meta name="tags" content="openbsd" />
+    <meta name="tags" content="php" />
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $(".content").fitVids();
-        });
-    </script>
 </head>
 
-<body>
-<div class="pure-g-r" id="layout">
-    <div class="sidebar sidebar-article pure-u">
-        <header class="header-article">
-            <hgroup>
-                <a href="./author/francisco-valladolid.html" title="See posts by Francisco Valladolid">
-                </a>
-                <h2 class="article-info">Francisco Valladolid</h2>
-                <small class="about-author"></small>
-                <h5>Published</h5>
-                <p>Sat 04 April 2015</p>
-                <a href="/">&larr;Home</a>
-            </hgroup>
-        </header>
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="./">BSDguy.org</a></h1>
+        </header><!-- /#banner -->
+        <nav id="menu"><ul>
+            <li class="active"><a href="./category/blog.html">blog</a></li>
+        </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="./nginx-openbsd56.html" rel="bookmark"
+         title="Permalink to Nginx - PHP-FPM - MySQL OpenBSD 5.6">Nginx - PHP-FPM - MySQL OpenBSD 5.6</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2015-04-04T00:00:00+02:00">
+      Sat 04 April 2015
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="./author/francisco-valladolid.html">Francisco Valladolid</a>
+    </address>
+    <div class="category">
+        Category: <a href="./category/blog.html">blog</a>
     </div>
-    <div class="pure-u">
-        <div class="content">
-            <section class="post">
-                <header class="post-header">
-                    <h1>Nginx - PHP-FPM - MySQL OpenBSD 5.6</h1>
-                        <p class="post-meta">
-                            // under                                 <a class="post-category" href="./tag/nginx.html">nginx</a>
-                                <a class="post-category" href="./tag/openbsd.html">openbsd</a>
-                                <a class="post-category" href="./tag/php.html">php</a>
-                        </p>
-                </header>
-            </section>
-            <p><strong>El siguiente articulo esta en Ingles y fue escrito por mi para www.vultr.com.</strong></p>
+    <div class="tags">
+        Tags:
+            <a href="./tag/nginx.html">nginx</a>
+            <a href="./tag/openbsd.html">openbsd</a>
+            <a href="./tag/php.html">php</a>
+    </div>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p><strong>El siguiente articulo esta en Ingles y fue escrito por mi para www.vultr.com.</strong></p>
 <p>OpenBSD is most used in firewall implementations,however, many people around the world are using OpenBSD as web server, mainly programmers and sysadmins.
 We assume a knowledge of OpenBSD, nginx and Unix in general.</p>
 <p>nginx [engine x] is an HTTP and reverse proxy server, as well as a mail proxy server, written by Igor Sysoev. For a long time, it has been running on many heavily loaded Russian sites . (<em>from the website</em>).</p>
@@ -82,26 +78,26 @@ a     <span class="m">0</span>: &lt;None&gt;
 <p>The <em>/etc/rc.conf.local</em> must be containt the next line</p>
 <p>nginx_flags=""</p>
 <p>And the <em>/etc/rc.conf</em> for start automatically in each reboot.</p>
-<div class="highlight"><pre><span></span><code><span class="err"># rc.d(8) packages scripts</span>
-<span class="err"># started in the specified order and stopped in reverse order</span>
-<span class="err">pkg_scripts=nginx</span>
+<div class="highlight"><pre><span></span><code># rc.d(8) packages scripts
+# started in the specified order and stopped in reverse order
+pkg_scripts=nginx
 </code></pre></div>
 
 <p><strong> Editing <em>/etc/nginx/nginx.conf</em> and <em>/etc/php-fpm.conf</em> </strong></p>
 <p>Basic requeriments for /etc/nginx/nginx.conf in the <em>server</em> section.</p>
-<div class="highlight"><pre><span></span><code><span class="err">location ~ \.php$ {</span>
-<span class="err">            try_files $uri =404;</span>
-<span class="err">            fastcgi_split_path_info ^(.+\.php)(/.+)$;</span>
-<span class="err">            fastcgi_pass   127.0.0.1:9000;</span>
-<span class="err">            fastcgi_index index.php;</span>
-<span class="err">            fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;</span>
-<span class="err">            include fastcgi_params;</span>
-<span class="err">    }</span>
+<div class="highlight"><pre><span></span><code><span class="nt">location</span> <span class="o">~</span> <span class="err">\</span><span class="p">.</span><span class="nc">php</span><span class="o">$</span> <span class="p">{</span>
+            <span class="err">try_files</span> <span class="err">$uri</span> <span class="err">=404</span><span class="p">;</span>
+            <span class="err">fastcgi_split_path_info</span> <span class="err">^(.+\.php)(/.+)$</span><span class="p">;</span>
+            <span class="err">fastcgi_pass</span>   <span class="err">127.0.0.1:9000</span><span class="p">;</span>
+            <span class="err">fastcgi_index</span> <span class="err">index.php</span><span class="p">;</span>
+            <span class="err">fastcgi_param</span>  <span class="err">SCRIPT_FILENAME</span> <span class="err">$document_root$fastcgi_script_name</span><span class="p">;</span>
+            <span class="err">include</span> <span class="err">fastcgi_params</span><span class="p">;</span>
+    <span class="p">}</span>
 </code></pre></div>
 
 <p><strong>Edit /etc/php-fpm.conf</strong></p>
-<div class="highlight"><pre><span></span><code><span class="p">;</span> <span class="n">Unix</span> <span class="k">user</span><span class="o">/</span><span class="k">group</span> <span class="k">of</span> <span class="n">processes</span>
-<span class="p">;</span> <span class="n">Note</span><span class="p">:</span> <span class="n">The</span> <span class="k">user</span> <span class="k">is</span> <span class="n">mandatory</span><span class="p">.</span> <span class="k">If</span> <span class="n">the</span> <span class="k">group</span> <span class="k">is</span> <span class="k">not</span> <span class="k">set</span><span class="p">,</span> <span class="n">the</span> <span class="k">default</span> <span class="k">user</span><span class="s1">&#39;s </span>
+<div class="highlight"><pre><span></span><code><span class="o">;</span> <span class="nt">Unix</span> <span class="nt">user</span><span class="o">/</span><span class="nt">group</span> <span class="nt">of</span> <span class="nt">processes</span>
+<span class="o">;</span> <span class="nt">Note</span><span class="o">:</span> <span class="nt">The</span> <span class="nt">user</span> <span class="nt">is</span> <span class="nt">mandatory</span><span class="o">.</span> <span class="nt">If</span> <span class="nt">the</span> <span class="nt">group</span> <span class="nt">is</span> <span class="nt">not</span> <span class="nt">set</span><span class="o">,</span> <span class="nt">the</span> <span class="nt">default</span> <span class="nt">user</span><span class="s1">&#39;s </span>
 <span class="s1">; group will be used.</span>
 <span class="s1">user = www</span>
 <span class="s1">group = www</span>
@@ -109,14 +105,14 @@ a     <span class="m">0</span>: &lt;None&gt;
 
 <span class="s1">; The address on which to accept FastCGI requests.</span>
 <span class="s1">; Valid syntaxes are:</span>
-<span class="s1">; &#39;</span><span class="n">ip</span><span class="p">.</span><span class="k">add</span><span class="p">.</span><span class="n">re</span><span class="p">.</span><span class="n">ss</span><span class="p">:</span><span class="n">port</span><span class="s1">&#39;    - to listen on a TCP socket to a specific address on</span>
+<span class="s1">; &#39;</span><span class="nt">ip</span><span class="p">.</span><span class="nc">add</span><span class="p">.</span><span class="nc">re</span><span class="p">.</span><span class="nc">ss</span><span class="p">:</span><span class="nd">port</span><span class="s1">&#39;    - to listen on a TCP socket to a specific address on</span>
 <span class="s1">;                            a specific port;</span>
-<span class="s1">;   &#39;</span><span class="n">port</span><span class="s1">&#39;                 - to listen on a TCP socket to all addresses on a</span>
+<span class="s1">;   &#39;</span><span class="nt">port</span><span class="s1">&#39;                 - to listen on a TCP socket to all addresses on a</span>
 <span class="s1">;                            specific port;</span>
-<span class="s1">;   &#39;</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="k">to</span><span class="o">/</span><span class="n">unix</span><span class="o">/</span><span class="n">socket</span><span class="err">&#39;</span> <span class="o">-</span> <span class="k">to</span> <span class="k">listen</span> <span class="k">on</span> <span class="n">a</span> <span class="n">unix</span> <span class="n">socket</span><span class="p">.</span>
-<span class="p">;</span> <span class="n">Note</span><span class="p">:</span> <span class="n">This</span> <span class="n">value</span> <span class="k">is</span> <span class="n">mandatory</span><span class="p">.</span>
+<span class="s1">;   &#39;</span><span class="o">/</span><span class="nt">path</span><span class="o">/</span><span class="nt">to</span><span class="o">/</span><span class="nt">unix</span><span class="o">/</span><span class="nt">socket</span><span class="err">&#39;</span> <span class="nt">-</span> <span class="nt">to</span> <span class="nt">listen</span> <span class="nt">on</span> <span class="nt">a</span> <span class="nt">unix</span> <span class="nt">socket</span><span class="o">.</span>
+<span class="o">;</span> <span class="nt">Note</span><span class="o">:</span> <span class="nt">This</span> <span class="nt">value</span> <span class="nt">is</span> <span class="nt">mandatory</span><span class="o">.</span>
 
-<span class="k">listen</span> <span class="o">=</span> <span class="mi">127</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">1</span><span class="p">:</span><span class="mi">9000</span>
+<span class="nt">listen</span> <span class="o">=</span> <span class="nt">127</span><span class="p">.</span><span class="nc">0</span><span class="p">.</span><span class="nc">0</span><span class="p">.</span><span class="nc">1</span><span class="p">:</span><span class="nd">9000</span>
 </code></pre></div>
 
 <h2>Installing MySQL</h2>
@@ -137,7 +133,7 @@ mysql-server-5.1.73p0v0:p5-DBD-mysql-4.027: ok
 mysql-server-5.1.73p0v0: ok
 The following new rcscripts were installed: /etc/rc.d/mysqld
 See rc.d<span class="o">(</span><span class="m">8</span><span class="o">)</span> <span class="k">for</span> details.
-Look in /usr/local/share/doc/pkg-readmes <span class="k">for</span> extra documentation.
+Look <span class="k">in</span> /usr/local/share/doc/pkg-readmes <span class="k">for</span> extra documentation.
 Extracted <span class="m">39040357</span> from <span class="m">39044890</span>
 </code></pre></div>
 
@@ -190,54 +186,13 @@ $ sudo /etc/rc.d/mysqld start
 <h2>Logs</h2>
 <p>Basic log files are found in <code>/var/log/nginx</code> subdirectory for audit purposes.</p>
 <p>Enjoy.</p>
-            <div class="hr"></div>
-            <a href="#" class="go-top">Go Top</a>
-<div class="comments">
-    <div id="disqus_thread"></div>
-    <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = "blogdefranciscovalladolid"; // required: replace example with your forum shortname
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-</div><footer class="footer">
-    <p>&copy; BSDguy.org &ndash;
-        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
-        for <a href="http://blog.getpelican.com/">Pelican</a>
-    </p>
-</footer>        </div>
-    </div>
-</div>
-    <script>
-        var $top = $('.go-top');
-
-        // Show or hide the sticky footer button
-        $(window).scroll(function() {
-            if ($(this).scrollTop() > 200) {
-                $top.fadeIn(200);
-            } else {
-                $top.fadeOut(200);
-            }
-        });
-
-        // Animate the scroll to top
-        $top.click(function(event) {
-            event.preventDefault();
-            $('html, body').animate({scrollTop: 0}, 300);
-        })
-
-        // Makes sure that the href="#" attached to the <a> elements
-        // don't scroll you back up the page.
-        $('body').on('click', 'a[href="#"]', function(event) {
-            event.preventDefault();
-        });
-    </script>
+  </div><!-- /.entry-content -->
+</section>
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
 </body>
 </html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+          <title>BSDguy.org - Usando most para colorear man pages</title>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+
+
+
+
+    <meta name="tags" content="Unix man linux netbsd openbsd freebsd pages doc" />
+
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="./">BSDguy.org</a></h1>
+        </header><!-- /#banner -->
+        <nav id="menu"><ul>
+            <li class="active"><a href="./category/blog.html">blog</a></li>
+        </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="./most-es.html" rel="bookmark"
+         title="Permalink to Usando most para colorear man pages">Usando most para colorear man pages</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2021-03-23T00:00:00+01:00">
+      Tue 23 March 2021
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="./author/francisco-valladolid.html">Francisco Valladolid</a>
+    </address>
+    <div class="category">
+        Category: <a href="./category/blog.html">blog</a>
+    </div>
+    <div class="tags">
+        Tags:
+            <a href="./tag/unix-man-linux-netbsd-openbsd-freebsd-pages-doc.html">Unix man linux netbsd openbsd freebsd pages doc</a>
+    </div>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <h3>Coloreando <code>man pages</code> en sistemas tipo Unix.</h3>
+<p>Las <code>man</code> pages son la documentacion oficinal para sistemas tipo Unix (BSD/Linux) el comando <a href="http://man.netbsd.org/man.1">man</a> seguido del nombre de un programa muestra la documentacion para este, por ejemplo:</p>
+<p><code>$ man  echo</code></p>
+<p><a href=""><img alt="man echo" src="https://i.imgur.com/QvEO7OXl.png"></a></p>
+<p><em>most</em> puede ser instalado con el gestor de paquetes de tu sistema operativo, en mi caso estoy usando <a href="https://www.netbsd.org">NetBSD</a> y <em>pkgin</em> para instalar paquetes binarios.</p>
+<div class="highlight"><pre><span></span><code> $ sudo pkgin in most
+</code></pre></div>
+
+<p>El siguiente paso es definir el paginador por default en el archivo de configuracion de nuestro shell, en mi caso <em>zsh</em>, por ejemplo:</p>
+<div class="highlight"><pre><span></span><code> <span class="n">echo</span> <span class="s2">&quot;export PAGER=most&quot;</span> <span class="o">&gt;&gt;</span> <span class="o">~/.</span><span class="n">zshrc</span>
+ <span class="n">source</span> <span class="o">.</span><span class="n">zshrc</span>
+</code></pre></div>
+
+<p>Ahora, la proxima vez que se invoque el comando <em>man echo</em> la pagina del manual del comando <em>echo</em> tendrà una apariencia distinta e incluira colores en la estructura.</p>
+<p><a href=""><img alt="man echo" src="https://i.imgur.com/OUO7qIKl.jpg"></a></p>
+  </div><!-- /.entry-content -->
+</section>
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+</body>
+</html>

@@ -1,107 +1,43 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="BSDguy.org, ">
-
-
-        <title>string tag // BSDguy.org // </title>
-
-
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../theme/css/pure.css">
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <title>BSDguy.org - string tag</title>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
 </head>
 
-<body>
-<div class="pure-g-r" id="layout">
-<div class="sidebar pure-u">
-    <div class="cover-img" style="background-image: url('images/banner.jpg')">
-        <div class="cover-body">
-            <header class="header">
-                <hgroup>
-                    <h1 class="brand-main"><a href="/">BSDguy.org</a></h1>
-                    <p class="tagline"></p>
-                    <p class="social">
-                        <a href="http://twitter.com/ficovh">
-                            <i class="fa fa-twitter fa-3x"></i>
-                        </a>
-                        <a href="http://github.com/ficovh">
-                            <i class="fa fa-github fa-3x"></i>
-                        </a>
-                        <a href="https://gitlab.com/ficovh">
-                            <i class="fa fa-gitlab fa-3x"></i>
-                        </a>
-                    <p>
-                </hgroup>
-            </header>
-        </div>
-    </div>
-</div>    <div class="pure-u-1">
-        <div class="content">
-            <!-- A wrapper for all the blog posts -->
-            <div class="posts">
-                <h1 class="content-subhead">
-Posts tagged 'string'                </h1>
-<section class="post">
-    <header class="post-header">
-        <a href="../author/francisco-valladolid.html" title="See posts by Francisco Valladolid">
-                <img class="avatar" alt="Francisco Valladolid" src="https://www.gravatar.com/avatar/ab1e128805502b007dd29966ca93273c">
-        </a>
-        <h3><a class="post-title" href="../random-str-perl-es.html">Cadenas aleatorias en Perl</a></h3>
-            <p class="post-meta"><p>La siguiente linea de codigo genera una cadena aleatoria en <a class="reference external" href="http://www.perl.org">perl</a>.</p>
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="../">BSDguy.org</a></h1>
+        </header><!-- /#banner -->
+        <nav id="menu"><ul>
+            <li><a href="../category/blog.html">blog</a></li>
+        </ul></nav><!-- /#menu -->
+<section id="content">
+<h2>Articles tagged with string</h2>
+
+<ol id="post-list">
+        <li><article class="hentry">
+                <header> <h2 class="entry-title"><a href="../random-str-perl-es.html" rel="bookmark" title="Permalink to Cadenas aleatorias en Perl">Cadenas aleatorias en Perl</a></h2> </header>
+                <footer class="post-info">
+                    <time class="published" datetime="2021-01-04T15:10:00+01:00"> Mon 04 January 2021 </time>
+                    <address class="vcard author">By
+                        <a class="url fn" href="../author/francisco-valladolid.html">Francisco Valladolid</a>
+                    </address>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <p>La siguiente linea de codigo genera una cadena aleatoria en <a class="reference external" href="http://www.perl.org">perl</a>.</p>
 <div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span> <span class="nb">map</span> <span class="p">{</span> <span class="p">(</span><span class="s">&quot;a&quot;</span><span class="o">..</span><span class="s">&quot;z&quot;</span><span class="p">,</span> <span class="s">&#39;0&#39;</span><span class="o">..</span><span class="s">&#39;9&#39;</span><span class="p">)[</span><span class="nb">rand</span> <span class="mi">36</span><span class="p">]</span> <span class="p">}</span> <span class="mi">1</span><span class="o">..</span><span class="mi">4</span> <span class="p">);</span>
 </pre></div>
 <p>Básicamente la función map itera sobre el conjunto de caracteres 'a' la 'z' y '0' al '9' generando cuatro caracteres aleatorios.</p>
-</p>
-            <p class="post-meta">
-                in <a href="../category/blog.html">blog</a> &middot; Mon 04 January 2021
-            </p>
-    </header>
-</section><div class="pagination-wrapper content-subhead">
-    <div class="pagination">
-        <div class="pagination-left">
-                &nbsp;
-        </div>
-        <span>Page 1 / 1</span>
-        <div class="pagination-right">
-        </div>
-    </div>
-</div><footer class="footer">
-    <p>&copy; BSDguy.org &ndash;
-        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
-        for <a href="http://blog.getpelican.com/">Pelican</a>
-    </p>
-</footer>            </div>
-        </div>
-    </div>
-</div>
-    <script>
-        var $top = $('.go-top');
-
-        // Show or hide the sticky footer button
-        $(window).scroll(function() {
-            if ($(this).scrollTop() > 200) {
-                $top.fadeIn(200);
-            } else {
-                $top.fadeOut(200);
-            }
-        });
-
-        // Animate the scroll to top
-        $top.click(function(event) {
-            event.preventDefault();
-            $('html, body').animate({scrollTop: 0}, 300);
-        })
-
-        // Makes sure that the href="#" attached to the <a> elements
-        // don't scroll you back up the page.
-        $('body').on('click', 'a[href="#"]', function(event) {
-            event.preventDefault();
-        });
-    </script>
+ </div><!-- /.entry-content -->
+        </article></li>
+</ol><!-- /#posts-list -->
+</section><!-- /#content -->
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
 </body>
 </html>

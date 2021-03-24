@@ -1,58 +1,56 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="BSDguy.org, ">
+          <title>BSDguy.org - Configuracion de PF en NetBSD 5.1</title>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
 
 
-        <title>Configuracion de PF en NetBSD 5.1 // BSDguy.org // </title>
 
 
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./theme/css/pure.css">
-    <link rel="stylesheet" href="./theme/css/pygments.css">
+    <meta name="tags" content="scsi" />
+    <meta name="tags" content="netbsd" />
+    <meta name="tags" content="unix" />
+    <meta name="tags" content="bsd" />
+    <meta name="tags" content="linux" />
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $(".content").fitVids();
-        });
-    </script>
 </head>
 
-<body>
-<div class="pure-g-r" id="layout">
-    <div class="sidebar sidebar-article pure-u">
-        <header class="header-article">
-            <hgroup>
-                <a href="./author/francisco-valladolid.html" title="See posts by Francisco Valladolid">
-                </a>
-                <h2 class="article-info">Francisco Valladolid</h2>
-                <small class="about-author"></small>
-                <h5>Published</h5>
-                <p>Sat 10 September 2011</p>
-                <a href="/">&larr;Home</a>
-            </hgroup>
-        </header>
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="./">BSDguy.org</a></h1>
+        </header><!-- /#banner -->
+        <nav id="menu"><ul>
+            <li class="active"><a href="./category/blog.html">blog</a></li>
+        </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="./pf-netbsd-es.html" rel="bookmark"
+         title="Permalink to Configuracion de PF en NetBSD 5.1">Configuracion de PF en NetBSD 5.1</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2011-09-10T04:27:00+02:00">
+      Sat 10 September 2011
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="./author/francisco-valladolid.html">Francisco Valladolid</a>
+    </address>
+    <div class="category">
+        Category: <a href="./category/blog.html">blog</a>
     </div>
-    <div class="pure-u">
-        <div class="content">
-            <section class="post">
-                <header class="post-header">
-                    <h1>Configuracion de PF en NetBSD 5.1</h1>
-                        <p class="post-meta">
-                            // under                                 <a class="post-category" href="./tag/scsi.html">scsi</a>
-                                <a class="post-category" href="./tag/netbsd.html">netbsd</a>
-                                <a class="post-category" href="./tag/unix.html">unix</a>
-                                <a class="post-category" href="./tag/bsd.html">bsd</a>
-                                <a class="post-category" href="./tag/linux.html">linux</a>
-                        </p>
-                </header>
-            </section>
-            <p>PF (packet filter) es un filtro de paquetes proveniente de OpenBSD;
+    <div class="tags">
+        Tags:
+            <a href="./tag/scsi.html">scsi</a>
+            <a href="./tag/netbsd.html">netbsd</a>
+            <a href="./tag/unix.html">unix</a>
+            <a href="./tag/bsd.html">bsd</a>
+            <a href="./tag/linux.html">linux</a>
+    </div>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>PF (packet filter) es un filtro de paquetes proveniente de OpenBSD;
 Incorporado en el sistema base desde NetBSD 4.0 y puede ser usado para
 implementar firewalls. NetBSD 5.1 incorpora la version 4.2 de pf, por lo
 que es importante leer la
@@ -113,54 +111,13 @@ $ sudo /sbin/pfctl -t bruteforce -T show
 nuestro servidor.</p>
 </div>
 
-            <div class="hr"></div>
-            <a href="#" class="go-top">Go Top</a>
-<div class="comments">
-    <div id="disqus_thread"></div>
-    <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = "blogdefranciscovalladolid"; // required: replace example with your forum shortname
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-</div><footer class="footer">
-    <p>&copy; BSDguy.org &ndash;
-        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
-        for <a href="http://blog.getpelican.com/">Pelican</a>
-    </p>
-</footer>        </div>
-    </div>
-</div>
-    <script>
-        var $top = $('.go-top');
-
-        // Show or hide the sticky footer button
-        $(window).scroll(function() {
-            if ($(this).scrollTop() > 200) {
-                $top.fadeIn(200);
-            } else {
-                $top.fadeOut(200);
-            }
-        });
-
-        // Animate the scroll to top
-        $top.click(function(event) {
-            event.preventDefault();
-            $('html, body').animate({scrollTop: 0}, 300);
-        })
-
-        // Makes sure that the href="#" attached to the <a> elements
-        // don't scroll you back up the page.
-        $('body').on('click', 'a[href="#"]', function(event) {
-            event.preventDefault();
-        });
-    </script>
+  </div><!-- /.entry-content -->
+</section>
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
 </body>
 </html>
