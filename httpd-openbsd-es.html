@@ -1,52 +1,56 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="en">
 <head>
-          <title>BSDguy.org - Servidor web OpenBSD httpd nativo</title>
-        <meta charset="utf-8" />
-        <meta name="generator" content="Pelican" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BSDguy.org, ">
 
 
+        <title>Servidor web OpenBSD httpd nativo // BSDguy.org // </title>
 
 
-    <meta name="tags" content="openbsd" />
-    <meta name="tags" content="web" />
-    <meta name="tags" content="httpd" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./theme/css/pure.css">
+    <link rel="stylesheet" href="./theme/css/pygments.css">
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
 </head>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="./">BSDguy.org</a></h1>
-        </header><!-- /#banner -->
-        <nav id="menu"><ul>
-            <li class="active"><a href="./category/blog.html">blog</a></li>
-        </ul></nav><!-- /#menu -->
-<section id="content" class="body">
-  <header>
-    <h2 class="entry-title">
-      <a href="./httpd-openbsd-es.html" rel="bookmark"
-         title="Permalink to Servidor web OpenBSD httpd nativo">Servidor web OpenBSD httpd nativo</a></h2>
- 
-  </header>
-  <footer class="post-info">
-    <time class="published" datetime="2014-11-13T11:10:00+01:00">
-      Thu 13 November 2014
-    </time>
-    <address class="vcard author">
-      By           <a class="url fn" href="./author/francisco-valladolid.html">Francisco Valladolid</a>
-    </address>
-    <div class="category">
-        Category: <a href="./category/blog.html">blog</a>
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="./author/francisco-valladolid.html" title="See posts by Francisco Valladolid">
+                </a>
+                <h2 class="article-info">Francisco Valladolid</h2>
+                <small class="about-author"></small>
+                <h5>Published</h5>
+                <p>Thu 13 November 2014</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
     </div>
-    <div class="tags">
-        Tags:
-            <a href="./tag/openbsd.html">openbsd</a>
-            <a href="./tag/web.html">web</a>
-            <a href="./tag/httpd.html">httpd</a>
-    </div>
-  </footer><!-- /.post-info -->
-  <div class="entry-content">
-    <p>Recien se libero la version 5.6 de <a class="reference external" href="http://www.openbsd.org">OpenBSD</a> y dentro de las novedades se encuetra un servidor web ligero que sustituye a Apache 1.3.</p>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Servidor web OpenBSD httpd nativo</h1>
+                        <p class="post-meta">
+                            // under                                 <a class="post-category" href="./tag/openbsd.html">openbsd</a>
+                                <a class="post-category" href="./tag/web.html">web</a>
+                                <a class="post-category" href="./tag/httpd.html">httpd</a>
+                        </p>
+                </header>
+            </section>
+            <p>Recien se libero la version 5.6 de <a class="reference external" href="http://www.openbsd.org">OpenBSD</a> y dentro de las novedades se encuetra un servidor web ligero que sustituye a Apache 1.3.</p>
 <p><a class="reference external" href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man8/httpd.8?query=httpd">httpd(8)</a>
 como se le conoce, es un servidor httpd con soporte FastCGI y SSL.</p>
 <p>La configuracion para httpd es simple, escribi un breve httpd.conf para configurar dos dominios
@@ -89,13 +93,54 @@ server <span class="s2">&quot;bsdguy.org&quot;</span> <span class="o">{</span>
 </pre></div>
 <p><a class="reference external" href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man8/httpd.8?query=httpd">httpd(8)</a> es simple pero tiene FastCGI y SSL que lo hace atractivo, enhorabuena.</p>
 
-  </div><!-- /.entry-content -->
-</section>
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="https://getpelican.com/">Pelican</a>,
-                which takes great advantage of <a href="https://www.python.org/">Python</a>.
-                </address><!-- /#about -->
-        </footer><!-- /#contentinfo -->
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "blogdefranciscovalladolid"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; BSDguy.org &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
 </body>
 </html>

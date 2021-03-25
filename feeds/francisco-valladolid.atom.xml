@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>BSDguy.org - Francisco Valladolid</title><link href="https://blog.bsdguy.org/" rel="alternate"></link><link href="https://blog.bsdguy.org/feeds/francisco-valladolid.atom.xml" rel="self"></link><id>https://blog.bsdguy.org/</id><updated>2021-03-23T00:00:00+01:00</updated><entry><title>Usando most para colorear man pages</title><link href="https://blog.bsdguy.org/most-es.html" rel="alternate"></link><published>2021-03-23T00:00:00+01:00</published><updated>2021-03-23T00:00:00+01:00</updated><author><name>Francisco Valladolid</name></author><id>tag:blog.bsdguy.org,2021-03-23:/most-es.html</id><summary type="html">&lt;h3&gt;Coloreando &lt;code&gt;man pages&lt;/code&gt; en sistemas tipo Unix.&lt;/h3&gt;
-&lt;p&gt;Las &lt;code&gt;man&lt;/code&gt; pages son la documentacion oficinal para sistemas tipo Unix (BSD/Linux) el comando &lt;a href="http://man.netbsd.org/man.1"&gt;man&lt;/a&gt; seguido del nombre de un programa muestra la documentacion para este, por ejemplo:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;$ man  echo&lt;/code&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>BSDguy.org - Francisco Valladolid</title><link href="https://blog.bsdguy.org/" rel="alternate"></link><link href="https://blog.bsdguy.org/feeds/francisco-valladolid.atom.xml" rel="self"></link><id>https://blog.bsdguy.org/</id><updated>2021-03-23T00:00:00+01:00</updated><entry><title>Usando most para colorear man pages</title><link href="https://blog.bsdguy.org/most-es.html" rel="alternate"></link><published>2021-03-23T00:00:00+01:00</published><updated>2021-03-23T00:00:00+01:00</updated><author><name>Francisco Valladolid</name></author><id>tag:blog.bsdguy.org,2021-03-23:/most-es.html</id><summary type="html">&lt;p&gt;Las &lt;code&gt;man&lt;/code&gt; pages son la documentacion oficinal para sistemas tipo Unix (BSD/Linux) el comando &lt;a href="http://man.netbsd.org/man.1"&gt;man&lt;/a&gt; seguido del nombre de un programa muestra la documentacion para este, por ejemplo:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt; $ man  echo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 &lt;p&gt;&lt;a href=""&gt;&lt;img alt="man echo" src="https://i.imgur.com/QvEO7OXl.png"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;most&lt;/em&gt; puede ser instalado con el gestor de paquetes de tu sistema …&lt;/p&gt;</summary><content type="html">&lt;h3&gt;Coloreando &lt;code&gt;man pages&lt;/code&gt; en sistemas tipo Unix.&lt;/h3&gt;
-&lt;p&gt;Las &lt;code&gt;man&lt;/code&gt; pages son la documentacion oficinal para sistemas tipo Unix (BSD/Linux) el comando &lt;a href="http://man.netbsd.org/man.1"&gt;man&lt;/a&gt; seguido del nombre de un programa muestra la documentacion para este, por ejemplo:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;$ man  echo&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;most&lt;/em&gt; puede ser instalado con el gestor de paquetes de tu sistema operativo, en mi caso &lt;a href="https://www.netbsd.org"&gt;NetBSD&lt;/a&gt; usa &lt;em&gt;pkgin …&lt;/em&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;Las &lt;code&gt;man&lt;/code&gt; pages son la documentacion oficinal para sistemas tipo Unix (BSD/Linux) el comando &lt;a href="http://man.netbsd.org/man.1"&gt;man&lt;/a&gt; seguido del nombre de un programa muestra la documentacion para este, por ejemplo:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt; $ man  echo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 &lt;p&gt;&lt;a href=""&gt;&lt;img alt="man echo" src="https://i.imgur.com/QvEO7OXl.png"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;most&lt;/em&gt; puede ser instalado con el gestor de paquetes de tu sistema operativo, en mi caso estoy usando &lt;a href="https://www.netbsd.org"&gt;NetBSD&lt;/a&gt; y &lt;em&gt;pkgin&lt;/em&gt; para instalar paquetes binarios.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;most&lt;/em&gt; puede ser instalado con el gestor de paquetes de tu sistema operativo, en mi caso &lt;a href="https://www.netbsd.org"&gt;NetBSD&lt;/a&gt; usa &lt;em&gt;pkgin&lt;/em&gt; para instalar paquetes binarios.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt; $ sudo pkgin in most
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;El siguiente paso es definir el paginador por default en el archivo de configuracion de nuestro shell, en mi caso &lt;em&gt;zsh&lt;/em&gt;, por ejemplo:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt; &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;export PAGER=most&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;~/.&lt;/span&gt;&lt;span class="n"&gt;zshrc&lt;/span&gt;
- &lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zshrc&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;export PAGER=most&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;~/.&lt;/span&gt;&lt;span class="n"&gt;zshrc&lt;/span&gt;
+ &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zshrc&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Ahora, la proxima vez que se invoque el comando &lt;em&gt;man echo&lt;/em&gt; la pagina del manual del comando &lt;em&gt;echo&lt;/em&gt; tendrà una apariencia distinta e incluira colores en la estructura.&lt;/p&gt;
@@ -137,21 +139,21 @@ realizar todo tipo de tareas de procesamiento de archivos de texto.&lt;/p&gt;
 separados por &amp;quot;espacios&amp;quot;, necesito ordenarlo en forma de lista y agregarle
 algunos parametros antes y despues para exportarlo a un router Mikrotik.&lt;/p&gt;
 &lt;p&gt;El archivo en cuestion se ve así.&lt;/p&gt;
-&lt;a class="reference external image-reference" href="https://i.imgur.com/NVhvxj6.png"&gt;&lt;img alt="" src="https://i.imgur.com/NVhvxj6m.png" /&gt;&lt;/a&gt;
+&lt;a class="reference external image-reference" href="https://i.imgur.com/NVhvxj6.png"&gt;&lt;img alt="sed" src="https://i.imgur.com/NVhvxj6m.png" /&gt;&lt;/a&gt;
 &lt;p&gt;Necesito sustituir los espacios en blanco por un caracter de nueva linea para
 crear una lista de usuarios, usamos el comando &lt;em&gt;sed&lt;/em&gt; de la siguiente forma.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;sed &lt;span class="s1"&gt;&amp;#39;s/\s/\n/g&amp;#39;&lt;/span&gt; test.txt &amp;gt; sed1.txt
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Después de ejcutar el comando, el archivo luce así.&lt;/p&gt;
-&lt;a class="reference external image-reference" href="https://i.imgur.com/tOXctyF.png"&gt;&lt;img alt="" src="https://i.imgur.com/tOXctyFm.png" /&gt;&lt;/a&gt;
+&lt;a class="reference external image-reference" href="https://i.imgur.com/tOXctyF.png"&gt;&lt;img alt="sed" src="https://i.imgur.com/tOXctyFm.png" /&gt;&lt;/a&gt;
 &lt;p&gt;Además de eso, necesito agregar una cadena de texto al inicio:  &lt;em&gt;add name=&lt;/em&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;sed -i &lt;span class="s1"&gt;&amp;#39;s/^/add name\=/g&amp;#39;&lt;/span&gt; sed1.txt
 &lt;/pre&gt;&lt;/div&gt;
-&lt;a class="reference external image-reference" href="https://i.imgur.com/MguwLUC.png"&gt;&lt;img alt="" src="https://i.imgur.com/MguwLUCm.png" /&gt;&lt;/a&gt;
+&lt;a class="reference external image-reference" href="https://i.imgur.com/MguwLUC.png"&gt;&lt;img alt="sed" src="https://i.imgur.com/MguwLUCm.png" /&gt;&lt;/a&gt;
 &lt;p&gt;Tambien necesito agregar al final la siguiente cadena:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;sed -i &lt;span class="s1"&gt;&amp;#39;s/$/ limit-uptime\=02:00:00 disabled\=no profile\=\&amp;quot;1mega\&amp;quot;/g&amp;#39;&lt;/span&gt; sed1.txt
 &lt;/pre&gt;&lt;/div&gt;
-&lt;a class="reference external image-reference" href="https://i.imgur.com/KhedLDe.png"&gt;&lt;img alt="" src="https://i.imgur.com/KhedLDem.png" /&gt;&lt;/a&gt;
+&lt;a class="reference external image-reference" href="https://i.imgur.com/KhedLDe.png"&gt;&lt;img alt="sed" src="https://i.imgur.com/KhedLDem.png" /&gt;&lt;/a&gt;
 &lt;p&gt;Unix es un sistema operativo muy completo, como tal ya no existe, pero sus derivados si,
 por citar algunos: &lt;em&gt;Linux, OpenBSD, FreeBSD, NetBSD, OSX&lt;/em&gt;.&lt;/p&gt;
 &lt;/div&gt;
